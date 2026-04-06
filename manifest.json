@@ -1,14 +1,14 @@
 {
   "name": "مصروفاتي",
   "short_name": "مصروفاتي",
-  "start_url": "/",
+  "start_url": "/masroofati/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
   "description": "تطبيق لإدارة المصاريف والديون بشكل ذكي",
   "dir": "rtl",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/masroofati/",
   "id": "com.masroofati.app",
   "icons": [
     {
