@@ -121,6 +121,26 @@
     .week-chip{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:148px;padding:12px 14px;border-radius:18px}
     .week-chip-title{font-weight:900;font-size:13px}
     .week-chip-sub{font-size:11px;opacity:.9}
+    .chip.has-dot{
+      position:relative;
+      padding-inline-start:28px;
+    }
+    .chip-dot{
+      position:absolute;
+      inset-inline-start:12px;
+      top:50%;
+      transform:translateY(-50%);
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--green);
+      box-shadow:0 0 0 4px rgba(34,197,94,.14);
+    }
+    .chip.active .chip-dot{
+      background:#86efac;
+      box-shadow:0 0 0 4px rgba(255,255,255,.12);
+    }
+
     .settings-shortcut{
       position:relative;
       overflow:hidden;
@@ -914,6 +934,8 @@ function bottomNav(){
 
     function debtsView(){
       const toMeSYP=debtSummary('TO_ME','SYP'), toMeUSD=debtSummary('TO_ME','USD'), onMeSYP=debtSummary('ON_ME','SYP'), onMeUSD=debtSummary('ON_ME','USD');
+      const hasToMeActive=debts.some(d=>d.kind==='TO_ME' && !d.paid);
+      const hasOnMeActive=debts.some(d=>d.kind==='ON_ME' && !d.paid);
       const query=(debtSearch||'').trim().toLowerCase();
       const suggestions=query?uniquePeople().filter(name=>name.toLowerCase().includes(query)).slice(0,6):[];
       const people=uniquePeople().filter(name=>{
@@ -932,8 +954,8 @@ function bottomNav(){
         <div class="search-wrap"><div class="search-box"><input id="debtSearchInput" class="input search-input" placeholder="ابحث باسم الشخص..." value="${(debtSearch||'').replace(/"/g,'&quot;')}" oninput="liveFilterDebts(this.value)" onfocus="liveFilterDebts(this.value)" /><span class="search-icon">🔎</span><div id="debtSuggestions" class="search-suggestions" style="display:none"></div></div></div>
         <div class="row" style="margin-top:12px;">
           <button type="button" class="chip ${debtKindFilter==='ALL'?'active':''}" onclick="debtKindFilter='ALL'; render()">الكل</button>
-          <button type="button" class="chip ${debtKindFilter==='TO_ME'?'active':''}" onclick="debtKindFilter='TO_ME'; render()">لي</button>
-          <button type="button" class="chip ${debtKindFilter==='ON_ME'?'active':''}" onclick="debtKindFilter='ON_ME'; render()">لهم</button>
+          <button type="button" class="chip ${hasToMeActive?'has-dot':''} ${debtKindFilter==='TO_ME'?'active':''}" onclick="debtKindFilter='TO_ME'; render()">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button>
+          <button type="button" class="chip ${hasOnMeActive?'has-dot':''} ${debtKindFilter==='ON_ME'?'active':''}" onclick="debtKindFilter='ON_ME'; render()">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button>
         </div>
         <div class="section-head"><div class="section-title">الأشخاص</div><div id="debtsCount" class="section-sub">${people.length} شخص</div></div>
         <div id="debtsPeopleList" class="list">${people.length?people.map(name=>{const active=debts.some(d=>d.personName===name && !d.paid); const searchText=(name+' '+debts.filter(d=>d.personName===name).map(d=>((d.reason||'')+' '+(d.customReason||''))).join(' ')).toLowerCase().replace(/"/g,'&quot;'); const kind=(debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid)?'TO_ME ':'') + (debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid)?'ON_ME':''); return `<div class="card tx-card debt-person-card" data-search="${searchText}" data-person-name="${name.replace(/"/g,'&quot;')}" data-kind="${kind.trim()}" onclick="openPerson('${name.replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="tx-top"><div><div class="tx-title">👤 <span>${name}</span></div><div class="tx-date" style="color:${active?'var(--green)':'var(--muted)'};font-weight:700">${active?'يوجد تعاملات نشطة':'لا يوجد تعاملات'}</div></div><div></div></div><div class="tx-actions"><button class="ghost-danger" onclick="event.stopPropagation(); requestDeletePerson('${name.replace(/'/g,"\\'")}')">حذف</button></div></div>`}).join(''):'<div class="card empty"><strong>لا يوجد أي ديون</strong><span>أضف شخصًا جديدًا</span></div>'}</div>
@@ -942,10 +964,12 @@ function bottomNav(){
 
     function personView(){
       const name=personViewName||'', allList=sortDebtsForView(debts.filter(d=>d.personName===name)), list=allList.filter(d=>d.kind===personDebtTab), s=personDebtSummary(name);
+      const hasToMeActive=debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid);
+      const hasOnMeActive=debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid);
       return `<div class="app"><div class="screen">
         ${topBar(name,'صفحة الشخص',true,true)}
         <div class="row" style="margin-top:12px;"><span class="person-pill">لي سوري: ${fmt(s.toMeSYP,'SYP')}</span><span class="person-pill">لي دولار: ${fmt(s.toMeUSD,'USD')}</span><span class="person-pill">لهم سوري: ${fmt(s.onMeSYP,'SYP')}</span><span class="person-pill">لهم دولار: ${fmt(s.onMeUSD,'USD')}</span></div>
-        <div class="row" style="margin-top:12px;"><button class="chip ${personDebtTab==='TO_ME'?'active':''}" onclick="setPersonDebtTab('TO_ME')">لي</button><button class="chip ${personDebtTab==='ON_ME'?'active':''}" onclick="setPersonDebtTab('ON_ME')">لهم</button></div>
+        <div class="row" style="margin-top:12px;"><button class="chip ${hasToMeActive?'has-dot':''} ${personDebtTab==='TO_ME'?'active':''}" onclick="setPersonDebtTab('TO_ME')">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button><button class="chip ${hasOnMeActive?'has-dot':''} ${personDebtTab==='ON_ME'?'active':''}" onclick="setPersonDebtTab('ON_ME')">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button></div>
         <div class="section-head"><div class="section-title">السجلات</div><div class="section-sub">${list.length} سجل</div></div>
         <div class="list">${list.length?list.map(renderDebtCard).join(''):'<div class="card empty"><strong>لا توجد سجلات</strong><span>لا توجد ديون في هذا القسم</span></div>'}</div>
       </div><button class="fab" onclick="openAddDebtForPerson()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
