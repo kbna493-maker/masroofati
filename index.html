@@ -9,46 +9,43 @@
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <style>
     :root{
-      --primary:#2563eb; --primary-dark:#0f172a; --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#64748b;
-      --border:#e2e8f0; --green:#22c55e; --orange:#f97316; --danger:#ef4444; --shadow:0 14px 34px rgba(15,23,42,.07);
+      --primary:#2563eb; --primary-dark:#0f172a; --bg:#f7faff; --card:#ffffff; --text:#0f172a; --muted:#64748b;
+      --border:#dbe7f5; --green:#22c55e; --orange:#f97316; --danger:#ef4444; --shadow:0 18px 42px rgba(37,99,235,.08);
     }
-    body.dark{--bg:#0f172a; --card:#111827; --text:#f8fafc; --muted:#94a3b8; --border:#334155; --shadow:0 14px 34px rgba(0,0,0,.28);}
+    body.dark{--bg:#0f172a; --card:#111827; --text:#f8fafc; --muted:#94a3b8; --border:#334155; --shadow:0 18px 40px rgba(0,0,0,.30);}
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f8fafc 0%, #eef2f7 100%);color:var(--text);min-height:100%;overflow-x:hidden}
-    body.dark{background:linear-gradient(180deg,#0f172a 0%, #111827 100%)}
+    html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f8fbff 0%, #edf4ff 58%, #eef2f7 100%);color:var(--text);min-height:100%;overflow-x:hidden}
+    body.dark{background:linear-gradient(180deg,#0f172a 0%, #111827 65%, #0b1220 100%)}
     button,input,textarea,select{font:inherit}
-    .app{max-width:420px;min-height:100vh;margin:0 auto;position:relative;padding-bottom:104px}
-    .screen{padding:6px 16px 96px;min-height:100vh}
-    .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:2px}
-    .icon-btn{min-width:46px;height:46px;border-radius:18px;border:1px solid var(--border);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,42,.06);padding:0 12px}
+    .app{max-width:420px;min-height:100vh;margin:0 auto;position:relative;padding-bottom:108px}
+    .screen{padding:10px 18px 104px;min-height:100vh}
+    .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:4px;margin-bottom:4px}
+    .icon-btn{min-width:48px;height:48px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.92);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 24px rgba(37,99,235,.08);padding:0 12px;backdrop-filter:blur(10px)}
     .title-wrap{text-align:center;flex:1;padding-top:2px}
-    .title{margin:0;font-size:30px;font-weight:800;line-height:1.1}
+    .title{margin:0;font-size:31px;font-weight:900;line-height:1.08;letter-spacing:-.3px}
     .subtitle{display:none}
-    .week-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
-    .week-range{font-weight:800}
-    .week-nav{display:flex;gap:8px}
-    .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:10px;margin-bottom:12px;padding-bottom:0}
+    .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:10px;margin-bottom:12px;padding-bottom:0;overflow-x:auto;scroll-behavior:smooth}
     .days::-webkit-scrollbar{display:none}
-    .day{min-width:0;width:100%;border:1px solid rgba(148,163,184,.18);background:rgba(255,255,255,.88);color:var(--text);border-radius:18px;text-align:center;padding:10px 4px;font-weight:800;cursor:pointer;position:relative;transition:.18s ease;box-shadow:0 4px 10px rgba(15,23,42,.04)}
+    .day{min-width:0;width:100%;border:1px solid rgba(148,163,184,.16);background:rgba(255,255,255,.94);color:var(--text);border-radius:20px;text-align:center;padding:11px 4px;font-weight:800;cursor:pointer;position:relative;transition:.18s ease;box-shadow:0 8px 18px rgba(37,99,235,.05)}
     .day .small{display:block;font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .day.active{background:linear-gradient(135deg,#0f172a 0%, #1e293b 30%, #2563eb 72%, #60a5fa 100%);color:#fff;border-color:transparent;box-shadow:0 10px 22px rgba(37,99,235,.22);transform:translateY(-1px)}
+    .day.active{background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 24%, #2563eb 68%, #60a5fa 100%);color:#fff;border-color:transparent;box-shadow:0 14px 28px rgba(37,99,235,.26);transform:translateY(-1px)}
     .day.active .small{color:rgba(255,255,255,.88)}
     .day.today{outline:none;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:26px;box-shadow:var(--shadow)}
-    .balance-card{background:linear-gradient(135deg,#0f172a 0%, #1e293b 35%, #2563eb 75%, #60a5fa 100%);color:#fff;border:none}
-    .balance-inner{display:grid;grid-template-columns:1fr 1px 1fr;gap:16px;padding:18px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow)}
+    .balance-card{background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 26%, #2563eb 72%, #60a5fa 100%);color:#fff;border:none;box-shadow:0 22px 44px rgba(37,99,235,.22)}
+    .balance-inner{display:grid;grid-template-columns:1fr 1px 1fr;gap:18px;padding:20px}
     .balance-sep{background:rgba(255,255,255,.3);border-radius:999px}
     .currency-label{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
-    .currency-balance{font-size:26px;font-weight:900;margin-top:10px}
+    .currency-balance{font-size:28px;font-weight:900;margin-top:12px;letter-spacing:-.2px}
     .income{margin-top:6px;color:#ecfeff;font-size:13px;line-height:1.6}
     .expense{margin-top:4px;color:#ffe4e6;font-size:13px;line-height:1.6}
     .stats-block{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
     .stats-divider{height:1px;background:rgba(255,255,255,.22);border-radius:999px;margin:12px 0 10px}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
-    .section-title{font-size:20px;font-weight:800}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:10px}
+    .section-title{font-size:21px;font-weight:900;letter-spacing:-.2px}
     .section-sub{font-size:14px;color:var(--muted);font-weight:700}
-    .list{display:grid;gap:12px;margin-top:12px}
-    .tx-card{padding:16px}
+    .list{display:grid;gap:14px;margin-top:14px}
+    .tx-card{padding:18px}
     .tx-top,.debt-top{display:flex;justify-content:space-between;gap:12px}
     .tx-title,.debt-title{font-weight:800;display:flex;align-items:center;gap:8px}
     .tx-date,.debt-date,.small-muted{color:var(--muted);font-size:13px}
@@ -60,25 +57,25 @@
     .ghost-edit,.ghost-open{color:var(--primary)}
     .ghost-ok{color:var(--green)}
     .ghost-danger{color:var(--danger)}
-    .fab{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a 0%, #1e293b 35%, #2563eb 75%, #60a5fa 100%);color:#fff;box-shadow:0 10px 22px rgba(37,99,235,.24);z-index:120}
+    .fab{position:fixed;left:50%;bottom:94px;transform:translateX(-50%);width:58px;height:58px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 30%, #2563eb 72%, #60a5fa 100%);color:#fff;box-shadow:0 16px 30px rgba(37,99,235,.26);z-index:120}
     .fab span{font-size:30px;line-height:1}
-    .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(420px,100%);display:flex;justify-content:space-around;align-items:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(248,250,252,.94);backdrop-filter:blur(14px);border-top:1px solid rgba(226,232,240,.9);z-index:90}
-    body.dark .bottom-nav{background:rgba(17,24,39,.94)}
-    .nav-btn{border:none;background:transparent;color:var(--muted);font-weight:700;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
-    .nav-btn.active{color:var(--primary)}
+    .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(420px,100%);display:flex;justify-content:space-around;align-items:center;padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(248,250,252,.90);backdrop-filter:blur(18px);border-top:1px solid rgba(219,231,245,.95);box-shadow:0 -10px 30px rgba(37,99,235,.06);z-index:90}
+    body.dark .bottom-nav{background:rgba(17,24,39,.92)}
+    .nav-btn{border:none;background:transparent;color:var(--muted);font-weight:800;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:4px 8px;border-radius:16px;transition:.18s ease}
+    .nav-btn.active{color:var(--primary);background:rgba(37,99,235,.08)}
     .field{margin-top:18px}
     .label{font-weight:800;margin-bottom:8px}
     .row{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:18px;padding:12px 16px;cursor:pointer}
+    .chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:18px;padding:12px 16px;cursor:pointer;box-shadow:0 6px 16px rgba(37,99,235,.04)}
     .chip.small{padding:11px 14px;font-size:13px;line-height:1.5}
-    .chip.active{background:linear-gradient(135deg,#0f172a 0%, #1e293b 35%, #2563eb 75%, #60a5fa 100%);color:#fff;border-color:transparent}
-    .input,.textarea,.select{width:100%;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:14px 16px;outline:none}
+    .chip.active{background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 30%, #2563eb 72%, #60a5fa 100%);color:#fff;border-color:transparent}
+    .input,.textarea,.select{width:100%;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:15px 16px;outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
     .textarea{min-height:110px;resize:vertical}
     .primary,.secondary-btn{width:100%;border:none;border-radius:20px;padding:15px 18px;font-weight:800;cursor:pointer}
-    .primary{background:linear-gradient(135deg,#0f172a 0%, #1e293b 35%, #2563eb 75%, #60a5fa 100%);color:#fff}
-    .secondary-btn{background:#e2e8f0;color:#0f172a;margin-top:10px}
+    .primary{background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 30%, #2563eb 72%, #60a5fa 100%);color:#fff;box-shadow:0 14px 24px rgba(37,99,235,.18)}
+    .secondary-btn{background:#eaf1fb;color:#0f172a;margin-top:10px}
     body.dark .secondary-btn{background:#1e293b;color:#fff}
-    .empty{padding:30px 18px;text-align:center}
+    .empty{padding:34px 20px;text-align:center}
     .empty strong{display:block;font-size:18px}
     .empty span{display:block;margin-top:8px;color:var(--muted);font-size:14px}
     .intro{min-height:100vh;background:linear-gradient(180deg,#2563eb,#1d4ed8);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
@@ -88,7 +85,7 @@
     .intro h1{margin:20px 0 0;font-size:40px}
     .intro p{margin-top:14px;color:#dbeafe;line-height:1.9}
     .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.35);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
-    .modal{width:100%;max-width:360px;background:var(--card);color:var(--text);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+    .modal{width:100%;max-width:360px;background:var(--card);color:var(--text);border-radius:30px;padding:24px;box-shadow:0 24px 50px rgba(15,23,42,.18)}
     .modal-title{font-size:24px;font-weight:800}
     .modal-text{color:var(--muted);font-size:15px;line-height:1.8;margin-top:6px}
     .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:22px}
@@ -121,106 +118,29 @@
     .week-chip{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:148px;padding:12px 14px;border-radius:18px}
     .week-chip-title{font-weight:900;font-size:13px}
     .week-chip-sub{font-size:11px;opacity:.9}
-    .chip.has-dot{
-      position:relative;
-      padding-inline-start:28px;
-    }
-    .chip-dot{
-      position:absolute;
-      inset-inline-start:12px;
-      top:50%;
-      transform:translateY(-50%);
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:var(--green);
-      box-shadow:0 0 0 4px rgba(34,197,94,.14);
-    }
-    .chip.active .chip-dot{
-      background:#86efac;
-      box-shadow:0 0 0 4px rgba(255,255,255,.12);
-    }
-
-    .settings-shortcut{
-      position:relative;
-      overflow:hidden;
-      padding:18px;
-      border-radius:24px;
-      background:linear-gradient(135deg,#0f172a 0%, #1e293b 40%, #2563eb 100%);
-      color:#fff;
-      border:none;
-      box-shadow:0 16px 34px rgba(37,99,235,.18);
-    }
-    .settings-shortcut::before{
-      content:"";
-      position:absolute;
-      inset:auto -30px -30px auto;
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      background:rgba(255,255,255,.08);
-      pointer-events:none;
-    }
-    .settings-shortcut-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .settings-shortcut-icon{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,255,255,.14);
-      font-size:22px;
-      flex:0 0 auto;
-    }
-    .settings-shortcut-title{
-      font-size:18px;
-      font-weight:900;
-      margin:0;
-      color:#fff;
-    }
-    .settings-shortcut-text{
-      margin-top:6px;
-      color:rgba(255,255,255,.86);
-      font-size:13px;
-      line-height:1.8;
-    }
-    .settings-shortcut-btn{
-      margin-top:14px;
-      width:100%;
-      border:none;
-      border-radius:18px;
-      padding:14px 16px;
-      font-weight:900;
-      cursor:pointer;
-      background:rgba(255,255,255,.14);
-      color:#fff;
-      backdrop-filter:blur(8px);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
-    }
-    .settings-shortcut-btn:active{
-      transform:translateY(1px);
-    }
-
-
-
+    .chip.has-dot{position:relative;padding-inline-start:28px}
+    .chip-dot{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:999px;background:var(--green);box-shadow:0 0 0 4px rgba(34,197,94,.14)}
+    .chip.active .chip-dot{background:#86efac;box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+    .settings-shortcut{position:relative;overflow:hidden;padding:18px;border-radius:24px;background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 34%, #2563eb 100%);color:#fff;border:none;box-shadow:0 16px 34px rgba(37,99,235,.18)}
+    .settings-shortcut::before{content:"";position:absolute;inset:auto -30px -30px auto;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none}
+    .settings-shortcut-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .settings-shortcut-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);font-size:22px;flex:0 0 auto}
+    .settings-shortcut-title{font-size:18px;font-weight:900;margin:0;color:#fff}
+    .settings-shortcut-text{margin-top:6px;color:rgba(255,255,255,.86);font-size:13px;line-height:1.8}
+    .settings-shortcut-btn{margin-top:14px;width:100%;border:none;border-radius:18px;padding:14px 16px;font-weight:900;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+    .settings-shortcut-btn:active{transform:translateY(1px)}
     .notif-list{display:grid;gap:10px;margin-top:14px}
-    .notif-item{padding:14px;border-radius:18px;background:rgba(148,163,184,.08);border:1px solid var(--border)}
+    .notif-item{padding:15px;border-radius:20px;background:rgba(148,163,184,.08);border:1px solid var(--border)}
     .notif-item-top{display:flex;justify-content:space-between;gap:10px}
     .notif-item-title{font-weight:800;font-size:14px}
     .notif-item-time{font-size:12px;color:var(--muted)}
     .notif-item-body{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.7}
-    .insights-hero{margin-top:16px;padding:18px;border-radius:28px;color:#fff;background:linear-gradient(135deg,#0f172a 0%, #1e293b 45%, #2563eb 100%)}
+    .insights-hero{margin-top:18px;padding:20px;border-radius:30px;color:#fff;background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 34%, #2563eb 100%)}
     .insights-title{font-size:26px;font-weight:900}
     .insights-sub{font-size:14px;line-height:1.8;opacity:.95;margin-top:8px}
     .insight-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
     .insight-tab{border:none;border-radius:18px;padding:13px 10px;background:#fff;color:#0f172a;font-weight:800}
-    .insight-tab.active{background:linear-gradient(135deg,#0f172a 0%, #1e293b 35%, #2563eb 75%, #60a5fa 100%);color:#fff}
+    .insight-tab.active{background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 30%, #2563eb 72%, #60a5fa 100%);color:#fff}
     .insight-panel{margin-top:16px;padding:16px;border-radius:24px;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1px solid #dbeafe}
     body.dark .insight-panel{background:linear-gradient(180deg,#111827,#0f172a);border-color:#334155}
     .insight-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
@@ -241,12 +161,86 @@
     .success-overlay.show{opacity:1}
     .success-mark-wrap{width:92px;height:92px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,.10);border:3px solid rgba(34,197,94,.28)}
     .success-mark{width:58px;height:58px;border-radius:999px;background:linear-gradient(180deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;font-weight:800}
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:84px;background:#0f172a;color:#fff;padding:10px 16px;border-radius:999px;z-index:240;opacity:0;pointer-events:none;transition:.2s}
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:86px;background:linear-gradient(135deg,#0f172a 0%, #1e3a8a 40%, #2563eb 100%);color:#fff;padding:11px 17px;border-radius:999px;z-index:240;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 14px 24px rgba(37,99,235,.22)}
     .toast.show{opacity:1}
     .syria-flag{display:inline-flex;width:26px;height:26px;border-radius:999px;overflow:hidden;position:relative;background:linear-gradient(to bottom,#16a34a 0 33%, #ffffff 33% 66%, #111827 66% 100%);border:none;align-items:center;justify-content:center}
     .syria-flag .stars{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;color:#e11d48;font-size:7px;line-height:1;font-weight:700}
-    body.dark .day{background:rgba(17,24,39,.92);border-color:rgba(148,163,184,.16);box-shadow:none}
+    .setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--border)}
+    .setting-row:first-of-type{border-top:none}
+    .setting-meta{flex:1}
+    .setting-name{font-weight:800}
+    .setting-text{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.7}
+    .settings-actions{display:grid;gap:10px;margin-top:14px}
+    .mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .mini-card{padding:14px;border-radius:20px;border:1px solid var(--border);background:var(--card)}
+    .mini-card .section-sub{display:block;margin-top:4px}
+    .currency-report-grid{display:grid;gap:14px;margin-top:14px}
+    body.dark .day{background:rgba(17,24,39,.96);border-color:rgba(148,163,184,.16);box-shadow:none}
     body.dark .day.today{box-shadow:0 0 0 2px rgba(96,165,250,.18)}
+
+    .history-summary-card{
+      margin-top:14px;
+      padding:18px;
+      border-radius:24px;
+      background:linear-gradient(135deg,#0f172a 0%, #1e293b 45%, #2563eb 100%);
+      color:#fff;
+      border:none;
+      box-shadow:0 16px 34px rgba(37,99,235,.16);
+    }
+    .history-summary-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .history-summary-title{
+      font-size:16px;
+      font-weight:900;
+    }
+    .history-summary-sub{
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      margin-top:6px;
+      line-height:1.8;
+    }
+    .history-summary-value{
+      font-size:28px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .history-search-card{
+      margin-top:16px;
+      padding:14px;
+      border-radius:24px;
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+    .history-weeks-wrap{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+  
+    .card,.day,.chip,.icon-btn,.primary,.secondary-btn,.nav-btn,.settings-shortcut,.insight-tab{
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .card:hover,.settings-shortcut:hover{
+      transform:translateY(-1px);
+    }
+    .primary:active,.secondary-btn:active,.fab:active,.chip:active,.icon-btn:active{
+      transform:translateY(1px);
+    }
+    .input:focus,.textarea:focus,.select:focus{
+      border-color:rgba(37,99,235,.38);
+      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    }
+    .tx-title span,.debt-title span{
+      line-height:1.7;
+    }
+
 
   </style>
 </head>
@@ -254,13 +248,25 @@
   <div id="app"></div>
   <div id="successOverlay" class="success-overlay"><div class="success-mark-wrap"><div class="success-mark">✓</div></div></div>
   <div id="toast" class="toast"></div>
+  <input type="file" id="backupInput" accept="application/json" style="display:none" />
   <script>
-    const STORAGE_KEY='masrofi_direct_transactions_v9';
-    const INTRO_KEY='masrofi_direct_intro_v9';
-    const SETTINGS_KEY='masroofati_settings_v31';
-    const DEBTS_KEY='masroofati_debts_v31';
-    const PEOPLE_KEY='masroofati_people_v39';
-    const NOTIFICATION_CENTER_KEY='masroofati_notification_center_v78';
+    const STORAGE_KEYS = {
+      transactions:'masroofati_transactions_v40',
+      intro:'masroofati_intro_v40',
+      settings:'masroofati_settings_v40',
+      debts:'masroofati_debts_v40',
+      people:'masroofati_people_v40',
+      notifications:'masroofati_notification_center_v40'
+    };
+    const LEGACY_KEYS = {
+      transactions:['masroofati_transactions_v31','masrofi_direct_transactions_v9'],
+      intro:['masroofati_intro_v31','masrofi_direct_intro_v9'],
+      settings:['masroofati_settings_v31'],
+      debts:['masroofati_debts_v31'],
+      people:['masroofati_people_v39'],
+      notifications:['masroofati_notification_center_v78']
+    };
+
     const expenseCategories=['أكل','قهوة','مواصلات','فواتير','تسوق','صحة','بيت','رصيد','أخرى'];
     const incomeCategories=['راتب','عمل إضافي','بيع','هدية','رصيد','أخرى'];
     const debtReasons=['قرض','مشتريات','إيجار','مساعدة','قسط','أخرى'];
@@ -276,7 +282,8 @@
     };
 
     const app=document.getElementById('app');
-    let screen='home', previousScreen='home', showIntro=!localStorage.getItem(INTRO_KEY);
+    let screen='home', previousScreen='home';
+    let showIntro=!readStorageValue(STORAGE_KEYS.intro, LEGACY_KEYS.intro) ;
     let transactions=loadTransactions(), debts=loadDebts(), peoplePages=loadPeople();
     let selectedDate=normalizeDate(new Date());
     let settings=loadSettings(); ensureNotificationSettings();
@@ -286,20 +293,225 @@
     let personViewName='', personDebtTab='TO_ME', historySearch='', debtSearch='', debtKindFilter='ALL', smartTab='spending', showWeekMenu=false, selectedHistoryWeek='';
     let dayStripScrollLeft=0, ensureSelectedDayVisible=false;
 
-    function loadJson(key,fallback){ try{ const s=localStorage.getItem(key); return s ? JSON.parse(s) : fallback; }catch{return fallback;} }
-    function saveJson(key,val){ localStorage.setItem(key, JSON.stringify(val)); }
-    function loadTransactions(){ return loadJson(STORAGE_KEY, sampleTransactions.slice()); }
-    function saveTransactions(){ saveJson(STORAGE_KEY, transactions); }
-    function loadDebts(){ return loadJson(DEBTS_KEY, []); }
-    function saveDebts(){ saveJson(DEBTS_KEY, debts); }
-    function loadPeople(){ return loadJson(PEOPLE_KEY, []); }
-    function savePeople(){ saveJson(PEOPLE_KEY, peoplePages); }
-    function loadNotificationCenter(){ return loadJson(NOTIFICATION_CENTER_KEY, []); }
-    function saveNotificationCenter(){ saveJson(NOTIFICATION_CENTER_KEY, notificationCenter); }
-    function loadSettings(){
-      return loadJson(SETTINGS_KEY, {darkMode:false, showDotOnToday:true, notifications:{afternoon:true, evening:true, activity:true, spendAlert:true, permission:'default', lastAfternoonDate:'', lastEveningDate:'', lastActivityDate:'', lastSpendAlertDate:''}});
+    function readStorageValue(primaryKey, legacyKeys=[]){
+      const primary=localStorage.getItem(primaryKey);
+      if(primary!=null) return primary;
+      for(const key of legacyKeys){
+        const value=localStorage.getItem(key);
+        if(value!=null){
+          localStorage.setItem(primaryKey, value);
+          return value;
+        }
+      }
+      return null;
     }
-    function saveSettings(){ saveJson(SETTINGS_KEY, settings); }
+
+    function exportData(){
+      try{
+        const payload = {
+          exportedAt: new Date().toISOString(),
+          app: 'masroofati',
+          version: 1,
+          transactions: Array.isArray(transactions) ? transactions : [],
+          debts: Array.isArray(debts) ? debts : [],
+          peoplePages: Array.isArray(peoplePages) ? peoplePages : [],
+          settings: settings || {},
+          notificationCenter: Array.isArray(notificationCenter) ? notificationCenter : []
+        };
+
+        const blob = new Blob(
+          [JSON.stringify(payload, null, 2)],
+          { type: 'application/json;charset=utf-8' }
+        );
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `masroofati-backup-${new Date().toISOString().slice(0,10)}.json`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+
+        setTimeout(() => {
+          try { document.body.removeChild(a); } catch(e) {}
+          try { URL.revokeObjectURL(url); } catch(e) {}
+        }, 300);
+
+        showToast('تم إنشاء النسخة الاحتياطية');
+      } catch (e) {
+        console.error(e);
+        showToast('تعذر إنشاء النسخة الاحتياطية');
+      }
+    }
+
+    function importDataFromFile(file){
+      if(!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function(ev){
+        try{
+          const raw = ev && ev.target ? ev.target.result : '';
+          const data = JSON.parse(raw || '{}');
+
+          if(Array.isArray(data.transactions)) transactions = normalizeTransactions(data.transactions);
+          if(Array.isArray(data.debts)) debts = normalizeDebts(data.debts);
+          if(Array.isArray(data.peoplePages)) peoplePages = data.peoplePages.slice();
+
+          if(data.settings && typeof data.settings === 'object'){
+            settings = { ...loadSettings(), ...data.settings };
+            ensureNotificationSettings();
+          }
+
+          if(Array.isArray(data.notificationCenter)) {
+            notificationCenter = data.notificationCenter.slice();
+          }
+
+          saveTransactions();
+          saveDebts();
+          savePeople();
+          saveSettings();
+          saveNotificationCenter();
+
+          render();
+          showSuccessMark();
+          showToast('تمت استعادة النسخة الاحتياطية');
+        }catch(e){
+          console.error(e);
+          showToast('ملف النسخة الاحتياطية غير صالح');
+        }
+      };
+
+      reader.onerror = function(){
+        showToast('تعذر قراءة الملف');
+      };
+
+      reader.readAsText(file, 'utf-8');
+    }
+
+    function triggerImportData(){
+      try{
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json,application/json';
+        input.style.display = 'none';
+
+        document.body.appendChild(input);
+
+        input.addEventListener('change', function(){
+          const file = input.files && input.files[0];
+          importDataFromFile(file);
+          setTimeout(() => {
+            try { document.body.removeChild(input); } catch(e) {}
+          }, 0);
+        }, { once: true });
+
+        input.click();
+      }catch(e){
+        console.error(e);
+        showToast('تعذر فتح اختيار الملف');
+      }
+    }
+
+
+    function loadJson(primaryKey, legacyKeys, fallback){
+      try{
+        const raw=readStorageValue(primaryKey, legacyKeys);
+        return raw ? JSON.parse(raw) : fallback;
+      }catch{return fallback;}
+    }
+    function saveJson(key,val){ localStorage.setItem(key, JSON.stringify(val)); }
+
+    function pad(v){ return String(v).padStart(2,'0'); }
+    function dateKeyFromDate(date){ const d=new Date(date); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+    function parseLocalDateKey(key){
+      if(!key) return normalizeDate(new Date());
+      const [y,m,d]=String(key).slice(0,10).split('-').map(Number);
+      return normalizeDate(new Date(y, (m||1)-1, d||1));
+    }
+    function normalizeDate(date){ const d=new Date(date); d.setHours(0,0,0,0); return d; }
+    function sameDay(a,b){ return dateKeyFromDate(a)===dateKeyFromDate(b); }
+    function transactionDateKey(tx){ return tx.dateKey || (tx.createdAt ? dateKeyFromDate(tx.createdAt) : dateKeyFromDate(new Date())); }
+    function debtDateKey(item){ return item.dateKey || (item.date ? dateKeyFromDate(item.date) : dateKeyFromDate(new Date())); }
+    function txDateObject(tx){ return parseLocalDateKey(transactionDateKey(tx)); }
+    function debtDateObject(item){ return parseLocalDateKey(debtDateKey(item)); }
+    function fmt(n,currency){ const value=Number(n||0); const text=Number.isInteger(value)?value.toLocaleString('en-US'):value.toLocaleString('en-US',{maximumFractionDigits:2}); return currency==='SYP'?`${text} ل.س`:`${text} $`; }
+    function dayLabel(value){ const d=value instanceof Date ? value : parseLocalDateKey(value); const now=new Date(); const y=new Date(); y.setDate(now.getDate()-1); if(sameDay(d,now)) return 'اليوم'; if(sameDay(d,y)) return 'أمس'; return d.toLocaleDateString('en-GB'); }
+    function debtDateLabel(value){ return (value instanceof Date ? value : parseLocalDateKey(value)).toLocaleDateString('en-GB'); }
+    function iconBadge(category){ const meta=categoryMeta[category]||categoryMeta['أخرى']; return `<span class="cat-icon" style="background:${meta.color}">${meta.icon}</span>`; }
+    function getDisplayCategory(tx){ return (tx.category==='أخرى' && tx.customName) ? tx.customName : tx.category; }
+    function escapeAttr(value){ return String(value||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function escapeJs(value){ return String(value||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+    function showToast(message){ const t=document.getElementById('toast'); if(!t) return; t.textContent=message; t.classList.add('show'); clearTimeout(window.__toastTimer); window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1600); }
+
+    function normalizeTransactions(list){
+      const source = Array.isArray(list) ? list : [];
+      const seenIds = new Set();
+      const normalized = [];
+
+      source.forEach((t,index)=>{
+        if(!t) return;
+
+        const rawAmount = Number(t.amount || 0);
+        const amount = Number.isFinite(rawAmount) ? rawAmount : 0;
+        if(amount < 0) return;
+
+        const dateKey =
+          t.dateKey ||
+          t.localDate ||
+          (t.createdAt ? dateKeyFromDate(t.createdAt) : dateKeyFromDate(new Date()));
+
+        const baseId = t.id || (Date.now()+index);
+        let safeId = baseId;
+        while(seenIds.has(String(safeId))){
+          safeId = `${baseId}_${index}_${normalized.length}`;
+        }
+        seenIds.add(String(safeId));
+
+        normalized.push({
+          id:safeId,
+          type:t.type === 'INCOME' ? 'INCOME' : 'EXPENSE',
+          currency:t.currency === 'USD' ? 'USD' : 'SYP',
+          amount,
+          category:t.category || 'أخرى',
+          note:t.note || '',
+          customName:t.customName || '',
+          dateKey
+        });
+      });
+
+      return normalized;
+    }
+    function normalizeDebts(list){
+      return (Array.isArray(list)?list:[]).map((d,index)=>{
+        const dateKey = d.dateKey || (d.date ? dateKeyFromDate(d.date) : dateKeyFromDate(new Date()));
+        return {
+          id:d.id || (Date.now()+index),
+          personName:d.personName || '',
+          amount:Number(d.amount||0),
+          currency:d.currency || 'SYP',
+          kind:d.kind || 'TO_ME',
+          reason:d.reason || 'قرض',
+          customReason:d.customReason || '',
+          paid:!!d.paid,
+          paidAt:d.paidAt || null,
+          dateKey
+        };
+      });
+    }
+
+    function loadTransactions(){ return normalizeTransactions(loadJson(STORAGE_KEYS.transactions, LEGACY_KEYS.transactions, sampleTransactions.slice())); }
+    function saveTransactions(){ saveJson(STORAGE_KEYS.transactions, transactions); }
+    function loadDebts(){ return normalizeDebts(loadJson(STORAGE_KEYS.debts, LEGACY_KEYS.debts, [])); }
+    function saveDebts(){ saveJson(STORAGE_KEYS.debts, debts); }
+    function loadPeople(){ return loadJson(STORAGE_KEYS.people, LEGACY_KEYS.people, []); }
+    function savePeople(){ saveJson(STORAGE_KEYS.people, peoplePages); }
+    function loadNotificationCenter(){ return loadJson(STORAGE_KEYS.notifications, LEGACY_KEYS.notifications, []); }
+    function saveNotificationCenter(){ saveJson(STORAGE_KEYS.notifications, notificationCenter); }
+    function loadSettings(){
+      return loadJson(STORAGE_KEYS.settings, LEGACY_KEYS.settings, {darkMode:false, showDotOnToday:true, notifications:{afternoon:true, evening:true, activity:true, spendAlert:true, permission:'default', lastAfternoonDate:'', lastEveningDate:'', lastActivityDate:'', lastSpendAlertDate:''}});
+    }
+    function saveSettings(){ saveJson(STORAGE_KEYS.settings, settings); }
 
     function ensureNotificationSettings(){
       settings.notifications = settings.notifications || {};
@@ -307,181 +519,85 @@
       ['permission','lastAfternoonDate','lastEveningDate','lastActivityDate','lastSpendAlertDate'].forEach(k=>{ settings.notifications[k]=settings.notifications[k] || ''; });
     }
 
-    function normalizeDate(date){ const d=new Date(date); d.setHours(0,0,0,0); return d; }
-    function sameDay(a,b){ const da=new Date(a), db=new Date(b); return da.getFullYear()===db.getFullYear() && da.getMonth()===db.getMonth() && da.getDate()===db.getDate(); }
-    function fmt(n,currency){ const value=Number(n||0); const text=Number.isInteger(value)?value.toLocaleString('en-US'):value.toLocaleString('en-US',{maximumFractionDigits:2}); return currency==='SYP'?`${text} ل.س`:`${text} $`; }
-    function dayLabel(iso){ const d=new Date(iso), now=new Date(), y=new Date(); y.setDate(now.getDate()-1); if(sameDay(d,now)) return 'اليوم'; if(sameDay(d,y)) return 'أمس'; return d.toLocaleDateString('en-GB'); }
-    function debtDateLabel(iso){ return new Date(iso).toLocaleDateString('en-GB'); }
-    function iconBadge(category){ const meta=categoryMeta[category]||categoryMeta['أخرى']; return `<span class="cat-icon" style="background:${meta.color}">${meta.icon}</span>`; }
-    function getDisplayCategory(tx){ return (tx.category==='أخرى' && tx.customName) ? tx.customName : tx.category; }
-    function showToast(message){ const t=document.getElementById('toast'); if(!t) return; t.textContent=message; t.classList.add('show'); clearTimeout(window.__toastTimer); window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1600); }
     function playSuccessSound(){
       try{
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if(!AudioCtx) return;
-
-        if(!window.__masroofatiAudioCtx){
-          window.__masroofatiAudioCtx = new AudioCtx();
-        }
-
+        if(!window.__masroofatiAudioCtx){ window.__masroofatiAudioCtx = new AudioCtx(); }
         const ctx = window.__masroofatiAudioCtx;
         if(ctx.state === 'suspended') ctx.resume();
-
         const now = ctx.currentTime;
-
         const master = ctx.createGain();
         master.connect(ctx.destination);
         master.gain.setValueAtTime(0.001, now);
         master.gain.exponentialRampToValueAtTime(0.42, now + 0.025);
         master.gain.exponentialRampToValueAtTime(0.001, now + 1.05);
-
         function note(freq,start,duration,type='sine',vol=0.15){
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-
           osc.type = type;
           osc.frequency.setValueAtTime(freq, now + start);
-
           gain.gain.setValueAtTime(0.001, now + start);
           gain.gain.exponentialRampToValueAtTime(vol, now + start + 0.02);
           gain.gain.exponentialRampToValueAtTime(0.001, now + start + duration);
-
-          osc.connect(gain);
-          gain.connect(master);
-
-          osc.start(now + start);
-          osc.stop(now + start + duration);
+          osc.connect(gain); gain.connect(master); osc.start(now + start); osc.stop(now + start + duration);
         }
-
-        // Premium banking-style layered confirmation chime
-        note(587, 0.00, 0.22, 'sine', 0.18);
-        note(784, 0.08, 0.28, 'triangle', 0.16);
-        note(987, 0.18, 0.34, 'triangle', 0.15);
-        note(1174,0.28, 0.50, 'sine', 0.12);
-
-        // sparkle layer
-        note(1567,0.22,0.24,'sine',0.06);
-        note(1760,0.34,0.28,'sine',0.05);
-
+        note(587, 0.00, 0.22, 'sine', 0.18); note(784, 0.08, 0.28, 'triangle', 0.16); note(987, 0.18, 0.34, 'triangle', 0.15); note(1174,0.28, 0.50, 'sine', 0.12); note(1567,0.22,0.24,'sine',0.06); note(1760,0.34,0.28,'sine',0.05);
       }catch(e){}
     }
     function showSuccessMark(){ const overlay=document.getElementById('successOverlay'); if(!overlay) return; overlay.classList.add('show'); playSuccessSound(); clearTimeout(window.__successTimer); window.__successTimer=setTimeout(()=>overlay.classList.remove('show'),800); }
     function vibrateFeedback(){ try{ navigator.vibrate && navigator.vibrate(35); }catch(e){} }
-    function rememberDayStripScroll(){
-      const strip=document.querySelector('.days');
-      if(strip) dayStripScrollLeft=strip.scrollLeft||0;
-    }
-    function bindAndRestoreDayStrip(){
-      const strip=document.querySelector('.days');
-      if(!strip) return;
-    }
+    function rememberDayStripScroll(){ const strip=document.querySelector('.days'); if(strip) dayStripScrollLeft=strip.scrollLeft||0; }
+    function bindAndRestoreDayStrip(){ const strip=document.querySelector('.days'); if(!strip) return; strip.scrollLeft = dayStripScrollLeft; strip.addEventListener('scroll', rememberDayStripScroll, {passive:true}); }
     function ensureActiveDayVisibleNow(){
-      return;
+      const strip=document.querySelector('.days'); const active=strip?.querySelector('.day.active');
+      if(strip && active){ active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
     }
 
-    function startOfFinancialWeek(date){
-      const d=normalizeDate(date);
-      const jsDay=d.getDay(); // 0 Sun ... 5 Fri
-      const diff=(jsDay+2)%7; // Fri=>0, Sat=>1,...
-      d.setDate(d.getDate()-diff);
-      return d;
-    }
+    function startOfFinancialWeek(date){ const d=normalizeDate(date); const jsDay=d.getDay(); const diff=(jsDay+2)%7; d.setDate(d.getDate()-diff); return d; }
     function endOfFinancialWeek(date){ const s=startOfFinancialWeek(date); const e=new Date(s); e.setDate(s.getDate()+6); e.setHours(23,59,59,999); return e; }
     function financialWeekDays(date){ const s=startOfFinancialWeek(date); return Array.from({length:7},(_,i)=>normalizeDate(new Date(s.getFullYear(),s.getMonth(),s.getDate()+i))); }
-    function financialWeekLabel(date){
-      const s=startOfFinancialWeek(date), e=endOfFinancialWeek(date);
-      return `${s.toLocaleDateString('en-GB')} - ${e.toLocaleDateString('en-GB')}`;
-    }
-    function financialWeekKey(date){
-      return startOfFinancialWeek(date).toISOString().slice(0,10);
-    }
-    function historyWeeks(){
-      const keys=[...new Set(transactions.map(t=>financialWeekKey(t.createdAt)))].sort((a,b)=>new Date(b)-new Date(a));
-      return keys;
-    }
-    function prettyHistoryWeekLabel(key, index){
-      const titles=['هذا الأسبوع','الأسبوع الماضي','قبل أسبوعين','قبل 3 أسابيع','قبل 4 أسابيع'];
-      const title=titles[index] || `منذ ${index} أسابيع`;
-      return {title, sub: financialWeekLabel(new Date(key))};
-    }
-function setHistoryWeek(key){
-      selectedHistoryWeek=key||'';
-      render();
-    }
-    function liveFilterHistory(value){
-      historySearch=value||'';
-      const query=(historySearch||'').trim().toLowerCase();
-      const cards=[...document.querySelectorAll('.history-tx-card')];
-      const list=document.getElementById('historyList');
-      if(!list) return;
-
-      let visibleCount=0;
-      cards.forEach(card=>{
-        const hay=(card.getAttribute('data-search')||'').toLowerCase();
-        const match=!query || hay.includes(query);
-        card.style.display=match ? '' : 'none';
-        if(match) visibleCount++;
-      });
-
-      let empty=document.getElementById('historyEmptyState');
-      if(visibleCount===0){
-        if(!empty){
-          empty=document.createElement('div');
-          empty.id='historyEmptyState';
-          empty.className='card empty';
-          empty.innerHTML='<strong>لا توجد نتائج</strong><span>جرّب كلمة بحث ثانية</span>';
-          list.appendChild(empty);
-        }
-      }else if(empty){
-        empty.remove();
-      }
-    }
+    function financialWeekLabel(date){ const s=startOfFinancialWeek(date), e=endOfFinancialWeek(date); return `${s.toLocaleDateString('en-GB')} - ${e.toLocaleDateString('en-GB')}`; }
+    function financialWeekKey(date){ return dateKeyFromDate(startOfFinancialWeek(date)); }
+    function historyWeeks(){ const keys=[...new Set(transactions.map(t=>financialWeekKey(txDateObject(t))))].sort((a,b)=>parseLocalDateKey(b)-parseLocalDateKey(a)); return keys; }
+    function prettyHistoryWeekLabel(key, index){ const titles=['هذا الأسبوع','الأسبوع الماضي','قبل أسبوعين','قبل 3 أسابيع','قبل 4 أسابيع']; const title=titles[index] || `منذ ${index} أسابيع`; return {title, sub: financialWeekLabel(parseLocalDateKey(key))}; }
+    function setHistoryWeek(key){ selectedHistoryWeek=key||''; render(); }
     function previousWeekDate(date){ const d=startOfFinancialWeek(date); d.setDate(d.getDate()-7); return d; }
     function nextWeekDate(date){ const d=startOfFinancialWeek(date); d.setDate(d.getDate()+7); return d; }
-    function inWeek(date, refDate){
-      const d=normalizeDate(date), s=startOfFinancialWeek(refDate), e=normalizeDate(endOfFinancialWeek(refDate));
-      return d>=s && d<=e;
-    }
+    function inWeek(value, refDate){ const d=normalizeDate(value instanceof Date ? value : parseLocalDateKey(value)); const s=startOfFinancialWeek(refDate), e=normalizeDate(endOfFinancialWeek(refDate)); return d>=s && d<=e; }
+
+    function transactionsForDate(date){ const key=dateKeyFromDate(date); return transactions.filter(t=>transactionDateKey(t)===key); }
     function calcPeriod(currency, refDate=selectedDate){
       const list=transactions.filter(t=>t.currency===currency);
-      const weekList=list.filter(t=>inWeek(t.createdAt, refDate));
+      const weekList=list.filter(t=>inWeek(transactionDateKey(t), refDate));
       const income=weekList.filter(t=>t.type==='INCOME').reduce((s,t)=>s+t.amount,0);
       const expense=weekList.filter(t=>t.type==='EXPENSE').reduce((s,t)=>s+t.amount,0);
-      const dayIncome=list.filter(t=>t.type==='INCOME' && sameDay(t.createdAt,refDate)).reduce((s,t)=>s+t.amount,0);
-      const dayExpense=list.filter(t=>t.type==='EXPENSE' && sameDay(t.createdAt,refDate)).reduce((s,t)=>s+t.amount,0);
+      const dayIncome=list.filter(t=>t.type==='INCOME' && transactionDateKey(t)===dateKeyFromDate(refDate)).reduce((s,t)=>s+t.amount,0);
+      const dayExpense=list.filter(t=>t.type==='EXPENSE' && transactionDateKey(t)===dateKeyFromDate(refDate)).reduce((s,t)=>s+t.amount,0);
       return {balance:income-expense, weekIncome:income, weekExpense:expense, dayIncome, dayExpense};
     }
-    function recentDailyExpenseAverage(days){
+    function recentDailyExpenseAverage(days, currency='ALL'){
       const today=normalizeDate(new Date()); let total=0;
-      for(let i=0;i<days;i++){ const d=new Date(today); d.setDate(today.getDate()-i); total += transactions.filter(t=>t.type==='EXPENSE' && sameDay(t.createdAt,d)).reduce((s,t)=>s+t.amount,0); }
+      for(let i=0;i<days;i++){
+        const d=new Date(today); d.setDate(today.getDate()-i);
+        total += transactions.filter(t=>t.type==='EXPENSE' && (currency==='ALL' || t.currency===currency) && transactionDateKey(t)===dateKeyFromDate(d)).reduce((s,t)=>s+t.amount,0);
+      }
       return total/Math.max(days,1);
     }
-    function todayTransactionsCount(){ return transactions.filter(t=>sameDay(t.createdAt,new Date())).length; }
+    function todayTransactionsCount(){ return transactionsForDate(new Date()).length; }
     function uniquePeople(){ return [...new Set([...(peoplePages||[]), ...debts.map(d=>d.personName).filter(Boolean)])].sort((a,b)=>a.localeCompare(b,'ar')); }
     function debtSummary(kind,currency){ return debts.filter(d=>d.kind===kind && d.currency===currency && !d.paid).reduce((s,d)=>s+d.amount,0); }
     function personDebtSummary(name){
       const list=debts.filter(d=>d.personName===name && !d.paid);
       return {toMeSYP:list.filter(d=>d.kind==='TO_ME'&&d.currency==='SYP').reduce((s,d)=>s+d.amount,0), toMeUSD:list.filter(d=>d.kind==='TO_ME'&&d.currency==='USD').reduce((s,d)=>s+d.amount,0), onMeSYP:list.filter(d=>d.kind==='ON_ME'&&d.currency==='SYP').reduce((s,d)=>s+d.amount,0), onMeUSD:list.filter(d=>d.kind==='ON_ME'&&d.currency==='USD').reduce((s,d)=>s+d.amount,0)};
     }
-    function sortDebtsForView(list){
-      return list.slice().sort((a,b)=>{
-        if(!!a.paid !== !!b.paid) return a.paid ? 1 : -1;
-        if(a.paid && b.paid) return new Date(b.paidAt||0)-new Date(a.paidAt||0);
-        return new Date(b.date)-new Date(a.date);
-      });
-    }
+    function sortDebtsForView(list){ return list.slice().sort((a,b)=>{ if(!!a.paid !== !!b.paid) return a.paid ? 1 : -1; if(a.paid && b.paid) return new Date(b.paidAt||0)-new Date(a.paidAt||0); return debtDateObject(b)-debtDateObject(a); }); }
 
-    function addNotificationItem(title, body, type){
-      notificationCenter.unshift({id:Date.now()+Math.random(), title, body, type:type||'general', createdAt:new Date().toISOString(), read:false});
-      notificationCenter=notificationCenter.slice(0,50); saveNotificationCenter();
-    }
+    function addNotificationItem(title, body, type){ notificationCenter.unshift({id:Date.now()+Math.random(), title, body, type:type||'general', createdAt:new Date().toISOString(), read:false}); notificationCenter=notificationCenter.slice(0,50); saveNotificationCenter(); }
     async function sendBrowserNotification(title, body){
       try{
         if(!('Notification' in window) || Notification.permission!=='granted') return false;
-        if('serviceWorker' in navigator){
-          const reg=await navigator.serviceWorker.getRegistration();
-          if(reg){ reg.showNotification(title,{body, tag:'masroofati-'+Date.now(), icon:'./icons/icon-192.png'}); return true; }
-        }
+        if('serviceWorker' in navigator){ const reg=await navigator.serviceWorker.getRegistration(); if(reg){ reg.showNotification(title,{body, tag:'masroofati-'+Date.now(), icon:'./icons/icon-192.png'}); return true; } }
         new Notification(title,{body}); return true;
       }catch(e){ return false; }
     }
@@ -492,8 +608,7 @@ function setHistoryWeek(key){
     async function requestNotificationPermission(){
       try{
         if(!('Notification' in window)){ showToast('الإشعارات غير مدعومة'); return; }
-        const result=await Notification.requestPermission();
-        settings.notifications.permission=result; saveSettings();
+        const result=await Notification.requestPermission(); settings.notifications.permission=result; saveSettings();
         if(result==='granted'){ await notifyUser('تم تفعيل الإشعارات','الإشعارات الذكية أصبحت مفعلة على جهازك.','system'); showToast('تم تفعيل إشعارات التطبيق'); }
         else showToast('لم يتم منح إذن الإشعارات');
         render();
@@ -501,7 +616,7 @@ function setHistoryWeek(key){
     }
 
     function scheduleActivityAnchor(){ window.__masroofatiLastVisibleAt=Date.now(); }
-    function todayStr(){ return new Date().toISOString().slice(0,10); }
+    function todayStr(){ return dateKeyFromDate(new Date()); }
     async function checkSmartReminders(){
       const now=new Date(), hour=now.getHours(), today=todayStr(), noTxToday=todayTransactionsCount()===0;
       if(settings.notifications.afternoon && noTxToday && hour>=16 && settings.notifications.lastAfternoonDate!==today){ settings.notifications.lastAfternoonDate=today; saveSettings(); await notifyUser('تذكير العصر','لسه ما سجلت أي مصروف اليوم. سجّل نفقاتك قبل ما تنساها.','reminder'); }
@@ -513,23 +628,13 @@ function setHistoryWeek(key){
     }
 
     function setScreen(next){
+      rememberDayStripScroll();
       if(next!=='settings') previousScreen=screen;
       screen=next;
-      if(next==='history' && !selectedHistoryWeek){
-        const weeks=historyWeeks();
-        selectedHistoryWeek=weeks[0]||'';
-      }
+      if(next==='history' && !selectedHistoryWeek){ const weeks=historyWeeks(); selectedHistoryWeek=weeks[0]||''; }
       render();
     }
-    function toggleSettings(){
-      if(screen==='settings'){
-        screen=previousScreen||'home';
-      }else{
-        previousScreen=screen||'home';
-        screen='settings';
-      }
-      render();
-    }
+    function toggleSettings(){ screen = screen==='settings' ? (previousScreen||'home') : 'settings'; render(); }
     function goBack(){
       if(screen==='person'){ screen='debts'; render(); return; }
       if(screen==='addDebt'){ screen=debtReturnScreen||'debts'; render(); return; }
@@ -539,66 +644,31 @@ function setHistoryWeek(key){
       if(screen==='notifications'){ screen=previousScreen||'home'; render(); return; }
       screen='home'; render();
     }
-    function startApp(){ localStorage.setItem(INTRO_KEY,'1'); showIntro=false; scheduleActivityAnchor(); render(); }
+    function startApp(){ localStorage.setItem(STORAGE_KEYS.intro,'1'); showIntro=false; scheduleActivityAnchor(); render(); }
     function openNotifications(){ previousScreen=screen||'home'; markNotificationsRead(); screen='notifications'; render(); }
     function toggleWeekMenu(){ showWeekMenu=!showWeekMenu; render(); }
     function closeWeekMenu(){ showWeekMenu=false; render(); }
-    function goToToday(){
-      selectedDate=normalizeDate(new Date());
-      showWeekMenu=false;
-      screen='home';
-      ensureSelectedDayVisible=true;
-      dayStripScrollLeft=0;
-      render();
-    }
-    function goCurrentWeek(){
-      selectedDate=startOfFinancialWeek(new Date());
-      showWeekMenu=false;
-      screen='home';
-      ensureSelectedDayVisible=true;
-      render();
-    }
-    function moveWeek(step){
-      const d=startOfFinancialWeek(selectedDate);
-      d.setDate(d.getDate()+(step*7));
-      selectedDate=normalizeDate(d);
-      showWeekMenu=false;
-      screen='home';
-      ensureSelectedDayVisible=true;
-      render();
-    }
+    function goToToday(){ selectedDate=normalizeDate(new Date()); showWeekMenu=false; screen='home'; ensureSelectedDayVisible=true; dayStripScrollLeft=0; render(); }
+    function goCurrentWeek(){ selectedDate=startOfFinancialWeek(new Date()); showWeekMenu=false; screen='home'; ensureSelectedDayVisible=true; render(); }
+    function moveWeek(step){ const d=startOfFinancialWeek(selectedDate); d.setDate(d.getDate()+(step*7)); selectedDate=normalizeDate(d); showWeekMenu=false; screen='home'; ensureSelectedDayVisible=true; render(); }
     function requestDelete(type,id){ pendingDelete={type,id}; render(); }
     function cancelDelete(){ pendingDelete={type:null,id:null}; render(); }
-    function confirmDelete(){
-      if(pendingDelete.type==='tx') { transactions=transactions.filter(t=>t.id!==pendingDelete.id); saveTransactions(); }
-      if(pendingDelete.type==='debt') { debts=debts.filter(d=>d.id!==pendingDelete.id); saveDebts(); }
-      pendingDelete={type:null,id:null}; render(); showSuccessMark(); vibrateFeedback();
-    }
+    function confirmDelete(){ if(pendingDelete.type==='tx') { transactions=transactions.filter(t=>t.id!==pendingDelete.id); saveTransactions(); } if(pendingDelete.type==='debt') { debts=debts.filter(d=>d.id!==pendingDelete.id); saveDebts(); } pendingDelete={type:null,id:null}; render(); showSuccessMark(); vibrateFeedback(); }
     function requestDeletePerson(name){ pendingDeletePersonName=name; render(); }
     function cancelDeletePerson(){ pendingDeletePersonName=''; render(); }
-    function confirmDeletePerson(){
-      if(!pendingDeletePersonName) return;
-      debts=debts.filter(d=>d.personName!==pendingDeletePersonName);
-      peoplePages=peoplePages.filter(p=>p!==pendingDeletePersonName);
-      saveDebts(); savePeople();
-      if(personViewName===pendingDeletePersonName){ personViewName=''; screen='debts'; }
-      pendingDeletePersonName=''; render(); showSuccessMark(); showToast('تم حذف الشخص');
-    }
+    function confirmDeletePerson(){ if(!pendingDeletePersonName) return; debts=debts.filter(d=>d.personName!==pendingDeletePersonName); peoplePages=peoplePages.filter(p=>p!==pendingDeletePersonName); saveDebts(); savePeople(); if(personViewName===pendingDeletePersonName){ personViewName=''; screen='debts'; } pendingDeletePersonName=''; render(); showSuccessMark(); showToast('تم حذف الشخص'); }
     function requestSettleDebt(id){ pendingSettleDebtId=id; render(); }
     function cancelSettleDebt(){ pendingSettleDebtId=null; render(); }
-    function confirmSettleDebt(){
-      debts=debts.map(d=>d.id===pendingSettleDebtId?{...d,paid:true,paidAt:new Date().toISOString()}:d);
-      saveDebts(); pendingSettleDebtId=null; render(); showSuccessMark(); showToast('تم التسديد');
-    }
+    function confirmSettleDebt(){ debts=debts.map(d=>d.id===pendingSettleDebtId?{...d,paid:true,paidAt:new Date().toISOString()}:d); saveDebts(); pendingSettleDebtId=null; render(); showSuccessMark(); showToast('تم التسديد'); }
 
     function saveTransaction(data){
       if(editingId!=null){ transactions=transactions.map(t=>t.id===editingId?{...t,...data}:t); editingId=null; }
-      else { transactions.unshift({id:Date.now(), createdAt:selectedDate.toISOString(), ...data}); }
+      else { transactions.unshift({id:Date.now(), ...data}); }
       saveTransactions(); screen=txReturnScreen||'home'; txReturnScreen='home'; render(); showSuccessMark(); vibrateFeedback();
       if(data.type==='EXPENSE' && settings.notifications.spendAlert){
-        const todayExpense=transactions.filter(t=>t.type==='EXPENSE' && sameDay(t.createdAt,new Date())).reduce((s,t)=>s+t.amount,0);
-        const avg=recentDailyExpenseAverage(7), today=todayStr();
-        if(todayExpense > Math.max(avg*1.35,0) && todayExpense>0 && settings.notifications.lastSpendAlertDate!==today){ settings.notifications.lastSpendAlertDate=today; saveSettings(); notifyUser('تنبيه صرف','مصروفك اليوم أعلى من المعتاد. راجع نفقاتك قبل أن تزيد أكثر.','spend'); }
+        const todayExpense=transactions.filter(t=>t.type==='EXPENSE' && t.currency===data.currency && transactionDateKey(t)===todayStr()).reduce((s,t)=>s+t.amount,0);
+        const avg=recentDailyExpenseAverage(7,data.currency), today=todayStr();
+        if(todayExpense > Math.max(avg*1.35,0) && todayExpense>0 && settings.notifications.lastSpendAlertDate!==`${today}-${data.currency}`){ settings.notifications.lastSpendAlertDate=`${today}-${data.currency}`; saveSettings(); notifyUser('تنبيه صرف',`مصروفك اليوم بعملة ${data.currency==='SYP'?'الليرة':'الدولار'} أعلى من المعتاد. راجع نفقاتك قبل أن تزيد أكثر.`,'spend'); }
       }
       scheduleActivityAnchor();
     }
@@ -609,30 +679,9 @@ function setHistoryWeek(key){
       saveDebts(); screen=debtReturnScreen || (debtFormPersonName ? 'person':'debts'); debtFormPersonName=''; debtReturnScreen='debts'; render(); showSuccessMark(); showToast('تم حفظ المعاملة');
     }
 
-    function setSelectedDate(value){
-      selectedDate=normalizeDate(value);
-      render();
-    }
-    function setWeek(date){
-      selectedDate=startOfFinancialWeek(date);
-      dayStripScrollLeft=0;
-      render();
-    }
-    function goCurrentWeek(){
-      selectedDate=startOfFinancialWeek(new Date());
-      showWeekMenu=false;
-      screen='home';
-      ensureSelectedDayVisible=true;
-      render();
-    }
-    function moveWeek(offset){
-      const d=startOfFinancialWeek(selectedDate);
-      d.setDate(d.getDate()+offset*7);
-      selectedDate=d;
-      dayStripScrollLeft=0;
-      render();
-    }
+    function setSelectedDate(value){ selectedDate=normalizeDate(value); ensureSelectedDayVisible=true; render(); }
     function updateSetting(key,value){ settings[key]=value; saveSettings(); render(); }
+    function updateNotificationSetting(key,value){ settings.notifications[key]=value; saveSettings(); render(); }
     function setSmartTab(v){ smartTab=v; render(); }
     function openAddTransaction(){ editingId=null; txReturnScreen=screen==='history'?'history':'home'; screen='add'; render(); }
     function openAddDebt(){ editingDebtId=null; debtReturnScreen=screen==='person'?'person':'debts'; screen='addDebt'; render(); }
@@ -642,17 +691,9 @@ function setHistoryWeek(key){
     function openAddDebtForPerson(){ if(!personViewName){ showToast('اختر شخصًا أولًا'); return; } editingDebtId=null; debtFormPersonName=personViewName; debtReturnScreen='person'; screen='addDebt'; render(); }
     function startEdit(id){ editingId=id; txReturnScreen=screen==='history'?'history':'home'; screen='add'; render(); }
     function startEditDebt(id){ editingDebtId=id; debtReturnScreen=screen==='person'?'person':'debts'; screen='addDebt'; render(); }
-    function selectDebtSuggestion(name){
-      debtSearch=name||'';
-      const input=document.getElementById('debtSearchInput');
-      if(input){
-        input.value=debtSearch;
-        input.focus();
-        const len=input.value.length;
-        try{ input.setSelectionRange(len,len); }catch(e){}
-      }
-      liveFilterDebts(debtSearch);
-    }
+    function selectDebtSuggestion(name){ debtSearch=name||''; const input=document.getElementById('debtSearchInput'); if(input){ input.value=debtSearch; input.focus(); const len=input.value.length; try{ input.setSelectionRange(len,len); }catch(e){} } liveFilterDebts(debtSearch); }
+    function selectHistorySuggestion(value){ historySearch=value||''; const input=document.getElementById('historySearchInput'); if(input){ input.value=historySearch; } liveFilterHistory(historySearch); }
+
     function liveFilterDebts(value){
       debtSearch=value||'';
       const query=(debtSearch||'').trim().toLowerCase();
@@ -660,10 +701,7 @@ function setHistoryWeek(key){
       const countEl=document.getElementById('debtsCount');
       const list=document.getElementById('debtsPeopleList');
       const suggestionsEl=document.getElementById('debtSuggestions');
-
-      let visibleCount=0;
-      const suggestionNames=[];
-
+      let visibleCount=0; const suggestionNames=[];
       cards.forEach(card=>{
         const hay=(card.getAttribute('data-search')||'').toLowerCase();
         const kinds=(card.getAttribute('data-kind')||'').toUpperCase();
@@ -671,47 +709,67 @@ function setHistoryWeek(key){
         const kindMatch=(debtKindFilter==='ALL') || kinds.includes(debtKindFilter);
         const textMatch=!query || hay.includes(query);
         const match=kindMatch && textMatch;
-
         card.style.display = match ? '' : 'none';
-
-        if(match){
-          visibleCount++;
-          if(query && personName && !suggestionNames.includes(personName) && suggestionNames.length < 6){
-            suggestionNames.push(personName);
-          }
-        }
+        if(match){ visibleCount++; if(query && personName && !suggestionNames.includes(personName) && suggestionNames.length < 6){ suggestionNames.push(personName); } }
       });
-
       if(countEl) countEl.textContent = `${visibleCount} شخص`;
-
       let empty=document.getElementById('debtsEmptyState');
-      if(visibleCount===0){
-        if(!empty){
-          empty=document.createElement('div');
-          empty.id='debtsEmptyState';
-          empty.className='card empty';
-          empty.innerHTML='<strong>لا توجد نتائج</strong><span>جرّب اسمًا أو كلمة أخرى</span>';
-          if(list) list.appendChild(empty);
-        }
-      }else if(empty){
-        empty.remove();
-      }
-
-      if(suggestionsEl){
-        if(query && suggestionNames.length){
-          suggestionsEl.innerHTML = suggestionNames.map(name => `<button type="button" class="search-suggestion-item" onclick="selectDebtSuggestion('${name.replace(/'/g,"\'")}')">${name}</button>`).join('');
-          suggestionsEl.style.display = '';
-        }else{
-          suggestionsEl.innerHTML = '';
-          suggestionsEl.style.display = 'none';
-        }
-      }
+      if(visibleCount===0){ if(!empty){ empty=document.createElement('div'); empty.id='debtsEmptyState'; empty.className='card empty'; empty.innerHTML='<strong>لا توجد نتائج</strong><span>جرّب اسمًا أو كلمة أخرى</span>'; if(list) list.appendChild(empty); } } else if(empty){ empty.remove(); }
+      if(suggestionsEl){ if(query && suggestionNames.length){ suggestionsEl.innerHTML = suggestionNames.map(name => `<button type="button" class="search-suggestion-item" onclick="selectDebtSuggestion('${escapeJs(name)}')">${name}</button>`).join(''); suggestionsEl.style.display = ''; } else { suggestionsEl.innerHTML = ''; suggestionsEl.style.display = 'none'; } }
     }
-    function savePersonPage(){
-      const input=document.getElementById('newPersonName'); const name=(input?.value||'').trim();
-      if(!name){ showToast('اكتب اسم الشخص'); return; }
-      if(!peoplePages.includes(name)){ peoplePages.unshift(name); savePeople(); }
-      personViewName=name; screen='person'; render(); showSuccessMark(); showToast('تمت إضافة الشخص');
+    function liveFilterHistory(value){
+      historySearch=value||'';
+      const query=(historySearch||'').trim().toLowerCase();
+      const cards=[...document.querySelectorAll('.history-tx-card')];
+      const list=document.getElementById('historyList');
+      const suggestionsEl=document.getElementById('historySuggestions');
+      if(!list) return;
+      let visibleCount=0; const suggestions=[];
+      cards.forEach(card=>{
+        const hay=(card.getAttribute('data-search')||'').toLowerCase();
+        const suggestion=(card.getAttribute('data-suggestion')||'').trim();
+        const match=!query || hay.includes(query);
+        card.style.display=match ? '' : 'none';
+        if(match){ visibleCount++; if(query && suggestion && !suggestions.includes(suggestion) && suggestions.length<6) suggestions.push(suggestion); }
+      });
+      let empty=document.getElementById('historyEmptyState');
+      if(visibleCount===0){ if(!empty){ empty=document.createElement('div'); empty.id='historyEmptyState'; empty.className='card empty'; empty.innerHTML='<strong>لا توجد نتائج</strong><span>جرّب كلمة بحث ثانية</span>'; list.appendChild(empty); } } else if(empty){ empty.remove(); }
+      if(suggestionsEl){ if(query && suggestions.length){ suggestionsEl.innerHTML = suggestions.map(v=>`<button type="button" class="search-suggestion-item" onclick="selectHistorySuggestion('${escapeJs(v)}')">${v}</button>`).join(''); suggestionsEl.style.display=''; } else { suggestionsEl.innerHTML=''; suggestionsEl.style.display='none'; } }
+    }
+    function savePersonPage(){ const input=document.getElementById('newPersonName'); const name=(input?.value||'').trim(); if(!name){ showToast('اكتب اسم الشخص'); return; } if(!peoplePages.includes(name)){ peoplePages.unshift(name); savePeople(); } personViewName=name; screen='person'; render(); showSuccessMark(); showToast('تمت إضافة الشخص'); }
+
+    function exportBackup(){
+      try{
+        const payload={
+          version:'1.0.0',
+          exportedAt:new Date().toISOString(),
+          app:'مصروفاتي',
+          data:{transactions, debts, peoplePages, settings, notificationCenter}
+        };
+        const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a'); a.href=url; a.download=`masroofati-backup-${todayStr()}.json`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); showToast('تم تنزيل النسخة الاحتياطية');
+      }catch(e){ showToast('تعذر إنشاء النسخة الاحتياطية'); }
+    }
+    function triggerImport(){ document.getElementById('backupInput')?.click(); }
+    function bindBackupImport(){
+      const input=document.getElementById('backupInput'); if(!input || input.dataset.bound==='1') return; input.dataset.bound='1';
+      input.addEventListener('change', async (event)=>{
+        const file=event.target.files?.[0]; if(!file) return;
+        try{
+          const text=await file.text(); const parsed=JSON.parse(text); const data=parsed?.data || parsed;
+          if(!data || !Array.isArray(data.transactions) || !Array.isArray(data.debts)) throw new Error('invalid');
+          transactions=normalizeTransactions(data.transactions);
+          debts=normalizeDebts(data.debts);
+          peoplePages=Array.isArray(data.peoplePages)?data.peoplePages:Array.isArray(data.people)?data.people:[];
+          settings={...loadSettings(), ...(data.settings||{})};
+          ensureNotificationSettings();
+          notificationCenter=Array.isArray(data.notificationCenter)?data.notificationCenter:[];
+          saveTransactions(); saveDebts(); savePeople(); saveSettings(); saveNotificationCenter();
+          showToast('تم استيراد النسخة الاحتياطية'); render();
+        }catch(e){ showToast('ملف النسخة الاحتياطية غير صالح'); }
+        input.value='';
+      });
     }
 
     function introView(){ return `<div class="intro"><div class="intro-box"><div class="intro-icon">💼</div><h1>مصروفاتي</h1><p>تابع دخلك ومصروفك أسبوعيًا من الجمعة إلى الخميس، مع دخل ومصروف وصافي أوضح.</p><button class="primary" onclick="startApp()">ابدأ الآن</button></div></div>`; }
@@ -719,110 +777,36 @@ function setHistoryWeek(key){
       const leftAction=back?'goBack()':'toggleSettings()';
       const leftLabel=back?'←':'⚙️';
       const unread=unreadNotificationCount();
-      if(simple){
-        return `<div class="topbar"><button class="icon-btn" onclick="${leftAction}">${leftLabel}</button><div class="title-wrap"><h1 class="title" style="white-space:nowrap;">${title}</h1>${subtitle?`<div class="subtitle">${subtitle}</div>`:''}</div><div style="width:46px;height:46px"></div></div>`;
-      }
+      if(simple){ return `<div class="topbar"><button class="icon-btn" onclick="${leftAction}">${leftLabel}</button><div class="title-wrap"><h1 class="title" style="white-space:nowrap;">${title}</h1>${subtitle?`<div class="subtitle">${subtitle}</div>`:''}</div><div style="width:46px;height:46px"></div></div>`; }
       return `<div class="topbar"><button class="icon-btn" onclick="${leftAction}">${leftLabel}</button><div class="title-wrap"><h1 class="title">${title}</h1>${subtitle?`<div class="subtitle">${subtitle}</div>`:''}</div><div class="top-actions"><button class="icon-btn" onclick="toggleWeekMenu()">📅</button><button class="icon-btn has-badge" onclick="openNotifications()">🔔${unread?`<span class="notif-badge">${unread>9?'9+':unread}</span>`:''}</button></div></div>`;
     }
-    function deleteConfirmModal(){
-      if(!pendingDelete.type) return '';
-      const label=pendingDelete.type==='tx'?'هذه العملية':'هذا الدين';
-      return `<div class="modal-backdrop" onclick="cancelDelete()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد الحذف</div><div class="modal-text">هل أنت متأكد من حذف ${label}؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelDelete()">إلغاء</button><button class="btn-confirm" onclick="confirmDelete()">حذف</button></div></div></div>`;
-    }
-    function settleConfirmModal(){
-      if(pendingSettleDebtId==null) return '';
-      return `<div class="modal-backdrop" onclick="cancelSettleDebt()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد التسديد</div><div class="modal-text">هل أنت متأكد من تأكيد التسديد لهذا الدين؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelSettleDebt()">إلغاء</button><button class="btn-confirm" onclick="confirmSettleDebt()">تأكيد</button></div></div></div>`;
-    }
-    function deletePersonConfirmModal(){
-      if(!pendingDeletePersonName) return '';
-      return `<div class="modal-backdrop" onclick="cancelDeletePerson()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد الحذف</div><div class="modal-text">هل أنت متأكد من حذف هذا الشخص وكل سجلات ديونه؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelDeletePerson()">إلغاء</button><button class="btn-confirm" onclick="confirmDeletePerson()">حذف</button></div></div></div>`;
-    }
-    
-    function weekMenuModal(){
-      if(!showWeekMenu) return '';
-      return `<div class="modal-backdrop" onclick="closeWeekMenu()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">التنقل بين الأسابيع</div><div class="modal-text">انتقل بين الأيام والأسابيع واستعرض بياناتك المالية بسهولة.</div><div class="menu-list"><button class="btn-soft" onclick="showWeekMenu=false; goToToday()">اليوم</button><button class="btn-soft" onclick="showWeekMenu=false; goCurrentWeek()">هذا الأسبوع</button><button class="btn-soft" onclick="showWeekMenu=false; moveWeek(-1)">الأسبوع السابق</button><button class="btn-soft" onclick="showWeekMenu=false; moveWeek(1)">الأسبوع القادم</button><button class="btn-cancel" onclick="closeWeekMenu()">إغلاق</button></div></div></div>`;
-    }
+    function deleteConfirmModal(){ if(!pendingDelete.type) return ''; const label=pendingDelete.type==='tx'?'هذه العملية':'هذا الدين'; return `<div class="modal-backdrop" onclick="cancelDelete()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد الحذف</div><div class="modal-text">هل أنت متأكد من حذف ${label}؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelDelete()">إلغاء</button><button class="btn-confirm" onclick="confirmDelete()">حذف</button></div></div></div>`; }
+    function settleConfirmModal(){ if(pendingSettleDebtId==null) return ''; return `<div class="modal-backdrop" onclick="cancelSettleDebt()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد التسديد</div><div class="modal-text">هل أنت متأكد من تأكيد التسديد لهذا الدين؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelSettleDebt()">إلغاء</button><button class="btn-confirm" onclick="confirmSettleDebt()">تأكيد</button></div></div></div>`; }
+    function deletePersonConfirmModal(){ if(!pendingDeletePersonName) return ''; return `<div class="modal-backdrop" onclick="cancelDeletePerson()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">تأكيد الحذف</div><div class="modal-text">هل أنت متأكد من حذف هذا الشخص وكل سجلات ديونه؟</div><div class="modal-actions"><button class="btn-cancel" onclick="cancelDeletePerson()">إلغاء</button><button class="btn-confirm" onclick="confirmDeletePerson()">حذف</button></div></div></div>`; }
+    function weekMenuModal(){ if(!showWeekMenu) return ''; return `<div class="modal-backdrop" onclick="closeWeekMenu()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-title">التنقل بين الأسابيع</div><div class="modal-text">انتقل بين الأيام والأسابيع واستعرض بياناتك المالية بسهولة.</div><div class="menu-list"><button class="btn-soft" onclick="showWeekMenu=false; goToToday()">اليوم</button><button class="btn-soft" onclick="showWeekMenu=false; goCurrentWeek()">هذا الأسبوع</button><button class="btn-soft" onclick="showWeekMenu=false; moveWeek(-1)">الأسبوع السابق</button><button class="btn-soft" onclick="showWeekMenu=false; moveWeek(1)">الأسبوع القادم</button><button class="btn-cancel" onclick="closeWeekMenu()">إغلاق</button></div></div></div>`; }
+    function bottomNav(){ return `<div class="bottom-nav"><button class="nav-btn ${screen==='home'?'active':''}" onclick="setScreen('home')">🏠<span>الرئيسية</span></button><button class="nav-btn ${['debts','person','addDebt','addPerson'].includes(screen)?'active':''}" onclick="setScreen('debts')">🤝<span>الديون</span></button><button class="nav-btn ${screen==='reports'?'active':''}" onclick="setScreen('reports')">🧠<span>المحلل</span></button><button class="nav-btn ${['settings','history','notifications'].includes(screen)?'active':''}" onclick="setScreen('settings')">⚙️<span>الإعدادات</span></button></div>`; }
 
-function bottomNav(){
-      return `<div class="bottom-nav">
-        <button class="nav-btn ${screen==='home'?'active':''}" onclick="setScreen('home')">🏠<span>الرئيسية</span></button>
-        <button class="nav-btn ${['debts','person','addDebt','addPerson'].includes(screen)?'active':''}" onclick="setScreen('debts')">🤝<span>الديون</span></button>
-        <button class="nav-btn ${screen==='reports'?'active':''}" onclick="setScreen('reports')">🧠<span>المحلل</span></button>
-        <button class="nav-btn ${['settings','history','notifications'].includes(screen)?'active':''}" onclick="setScreen('settings')">⚙️<span>الإعدادات</span></button>
-      </div>`;
-    }
+    function renderDays(){ return financialWeekDays(selectedDate).map((d,i)=>{ const isSelected=sameDay(d,selectedDate), isToday=sameDay(d,new Date()); return `<button class="day ${isSelected?'active':''} ${isToday?'today':''}" onclick="setSelectedDate('${dateKeyFromDate(d)}')">${d.getDate()}<span class="small">${weekDayNames[i]}</span></button>`; }).join(''); }
+    function renderTxCard(t){ const dateObj=txDateObject(t); return `<div class="card tx-card"><div class="tx-top"><div><div class="tx-title">${iconBadge(t.category)}<span>${getDisplayCategory(t)}${t.note?` - ${t.note}`:''}</span></div><div class="tx-date">${dayLabel(dateObj)}</div></div><div><div class="tx-amount ${t.type==='INCOME'?'income-c':'expense-c'}">${fmt(t.amount,t.currency)}</div><div class="tx-date">${t.type==='INCOME'?'دخل':'مصروف'}</div></div></div><div class="tx-actions"><button class="ghost-edit" onclick="startEdit(${t.id})">تعديل</button><button class="ghost-danger" onclick="requestDelete('tx',${t.id})">حذف</button></div></div>`; }
+    function renderHistoryTxCard(t){ const searchText=((getDisplayCategory(t)||'')+' '+(t.note||'')+' '+(t.category||'')+' '+(t.currency||'')+' '+(t.type||'')).toLowerCase(); return `<div class="card tx-card history-tx-card" data-search="${escapeAttr(searchText)}" data-suggestion="${escapeAttr(getDisplayCategory(t)||t.category||'')}"><div class="tx-top"><div><div class="tx-title">${iconBadge(t.category)}<span>${getDisplayCategory(t)}${t.note?` - ${t.note}`:''}</span></div><div class="tx-date">${dayLabel(txDateObject(t))}</div></div><div><div class="tx-amount ${t.type==='INCOME'?'income-c':'expense-c'}">${fmt(t.amount,t.currency)}</div><div class="tx-date">${t.type==='INCOME'?'دخل':'مصروف'}</div></div></div></div>`; }
 
-    function renderDays(){
-      return financialWeekDays(selectedDate).map((d,i)=>{
-        const isSelected=sameDay(d,selectedDate), isToday=sameDay(d,new Date());
-        return `<button class="day ${isSelected?'active':''} ${isToday?'today':''}" onclick="setSelectedDate('${d.toISOString()}')">${d.getDate()}<span class="small">${weekDayNames[i]}</span></button>`;
-      }).join('');
-    }
-
-    function renderTxCard(t){
-      return `<div class="card tx-card"><div class="tx-top"><div><div class="tx-title">${iconBadge(t.category)}<span>${getDisplayCategory(t)}${t.note?` - ${t.note}`:''}</span></div><div class="tx-date">${dayLabel(t.createdAt)}</div></div><div><div class="tx-amount ${t.type==='INCOME'?'income-c':'expense-c'}">${fmt(t.amount,t.currency)}</div><div class="tx-date">${t.type==='INCOME'?'دخل':'مصروف'}</div></div></div><div class="tx-actions"><button class="ghost-edit" onclick="startEdit(${t.id})">تعديل</button><button class="ghost-danger" onclick="requestDelete('tx',${t.id})">حذف</button></div></div>`;
-    }
-    function renderHistoryTxCard(t){
-      const searchText=((getDisplayCategory(t)||'')+' '+(t.note||'')+' '+(t.category||'')+' '+(t.currency||'')+' '+(t.type||'')).toLowerCase().replace(/"/g,'&quot;');
-      return `<div class="card tx-card history-tx-card" data-search="${searchText}"><div class="tx-top"><div><div class="tx-title">${iconBadge(t.category)}<span>${getDisplayCategory(t)}${t.note?` - ${t.note}`:''}</span></div><div class="tx-date">${dayLabel(t.createdAt)}</div></div><div><div class="tx-amount ${t.type==='INCOME'?'income-c':'expense-c'}">${fmt(t.amount,t.currency)}</div><div class="tx-date">${t.type==='INCOME'?'دخل':'مصروف'}</div></div></div></div>`;
-    }
     function homeView(){
       const syp=calcPeriod('SYP',selectedDate), usd=calcPeriod('USD',selectedDate);
-      const dayItems=transactions.filter(t=>sameDay(t.createdAt,selectedDate)).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-      return `<div class="app"><div class="screen">
-        ${topBar('مصروفاتي','',false)}
-        <div class="days">${renderDays()}</div>
-        <div class="card balance-card"><div class="balance-inner">
-          <div>
-            <div class="currency-label"><span class="syria-flag"><span class="stars">★ ★ ★</span></span><span>الليرة السورية</span></div>
-            <div class="currency-balance">${fmt(syp.dayExpense,'SYP').replace(' ل.س','')}</div>
-            <div class="stats-block">
-              <div class="income">دخل اليوم: ${fmt(syp.dayIncome,'SYP').replace(' ل.س','')}</div>
-              <div class="expense">مصروف اليوم: ${fmt(syp.dayExpense,'SYP').replace(' ل.س','')}</div>
-              <div class="stats-divider"></div>
-              <div class="income">دخل الأسبوع: ${fmt(syp.weekIncome,'SYP').replace(' ل.س','')}</div>
-              <div class="expense">مصروف الأسبوع: ${fmt(syp.weekExpense,'SYP').replace(' ل.س','')}</div>
-            </div>
-          </div>
-          <div class="balance-sep"></div>
-          <div>
-            <div class="currency-label">الدولار</div>
-            <div class="currency-balance">${fmt(usd.dayExpense,'USD').replace(' $','')}</div>
-            <div class="stats-block">
-              <div class="income">دخل اليوم: ${fmt(usd.dayIncome,'USD').replace(' $','')}</div>
-              <div class="expense">مصروف اليوم: ${fmt(usd.dayExpense,'USD').replace(' $','')}</div>
-              <div class="stats-divider"></div>
-              <div class="income">دخل الأسبوع: ${fmt(usd.weekIncome,'USD').replace(' $','')}</div>
-              <div class="expense">مصروف الأسبوع: ${fmt(usd.weekExpense,'USD').replace(' $','')}</div>
-            </div>
-          </div>
-        </div></div>
-        <div class="section-head"><div class="section-title">آخر العمليات</div><div class="section-sub">${dayItems.length} عملية</div></div>
-        <div class="list">${dayItems.length?dayItems.map(renderTxCard).join(''):'<div class="card empty"><strong>لا توجد عمليات</strong><span>لا توجد عمليات مسجلة في هذا اليوم</span></div>'}</div>
-      </div><button class="fab" onclick="openAddTransaction()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
+      const dayItems=transactionsForDate(selectedDate).slice().sort((a,b)=>b.id-a.id);
+      return `<div class="app"><div class="screen">${topBar('مصروفاتي','',false)}<div class="days">${renderDays()}</div><div class="card balance-card"><div class="balance-inner"><div><div class="currency-label"><span class="syria-flag"><span class="stars">★ ★ ★</span></span><span>الليرة السورية</span></div><div class="currency-balance">${fmt(syp.balance,'SYP').replace(' ل.س','')}</div><div class="stats-block"><div class="income">دخل اليوم: ${fmt(syp.dayIncome,'SYP').replace(' ل.س','')}</div><div class="expense">مصروف اليوم: ${fmt(syp.dayExpense,'SYP').replace(' ل.س','')}</div><div class="stats-divider"></div><div class="income">دخل الأسبوع: ${fmt(syp.weekIncome,'SYP').replace(' ل.س','')}</div><div class="expense">مصروف الأسبوع: ${fmt(syp.weekExpense,'SYP').replace(' ل.س','')}</div></div></div><div class="balance-sep"></div><div><div class="currency-label">الدولار</div><div class="currency-balance">${fmt(usd.balance,'USD').replace(' $','')}</div><div class="stats-block"><div class="income">دخل اليوم: ${fmt(usd.dayIncome,'USD').replace(' $','')}</div><div class="expense">مصروف اليوم: ${fmt(usd.dayExpense,'USD').replace(' $','')}</div><div class="stats-divider"></div><div class="income">دخل الأسبوع: ${fmt(usd.weekIncome,'USD').replace(' $','')}</div><div class="expense">مصروف الأسبوع: ${fmt(usd.weekExpense,'USD').replace(' $','')}</div></div></div></div></div><div class="section-head"><div class="section-title">آخر العمليات</div><div class="section-sub">${dayItems.length} عملية</div></div><div class="list">${dayItems.length?dayItems.map(renderTxCard).join(''):'<div class="card empty"><strong>لا توجد عمليات</strong><span>لا توجد عمليات مسجلة في هذا اليوم</span></div>'}</div></div><button class="fab" onclick="openAddTransaction()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
     }
 
     function addView(){
       const editing=editingId!=null ? transactions.find(t=>t.id===editingId) : null;
       const defaultType=editing?editing.type:'EXPENSE', defaultCurrency=editing?editing.currency:'SYP', defaultAmount=editing?editing.amount:'', defaultCategory=editing?editing.category:'قهوة', defaultNote=editing?(editing.note||''):'', defaultCustom=editing?(editing.customName||''):'';
-      return `<div class="app"><div class="screen">
-        ${topBar(editing?'تعديل العملية':'إضافة العملية','',true,true)}
-        <form id="txForm">
-          <div class="field"><div class="label">نوع العملية</div><div class="row"><button type="button" class="chip ${defaultType==='EXPENSE'?'active':''}" data-type="EXPENSE">💸 مصروف</button><button type="button" class="chip ${defaultType==='INCOME'?'active':''}" data-type="INCOME">💵 دخل</button></div></div>
-          <div class="field"><div class="label">المبلغ</div><input class="input" id="amount" placeholder="أدخل المبلغ" inputmode="decimal" value="${defaultAmount}" /></div>
-          <div class="field"><div class="label">العملة</div><div class="row"><button type="button" class="chip ${defaultCurrency==='SYP'?'active':''}" data-currency="SYP"><span class="syria-flag"><span class="stars">★ ★ ★</span></span> ليرة سورية</button><button type="button" class="chip ${defaultCurrency==='USD'?'active':''}" data-currency="USD">💲 دولار</button></div></div>
-          <div class="field"><div class="label">التصنيف</div><div class="row" id="categories"></div></div>
-          <div class="field" id="customCategoryWrap" style="display:none;"><div class="label">اسم مخصص</div><input class="input" id="customCategory" placeholder="اكتب اسم التصنيف" value="${defaultCustom}" /></div>
-          <div class="field"><div class="label">ملاحظة</div><textarea class="textarea" id="note" placeholder="ملاحظة اختيارية">${defaultNote}</textarea></div>
-          <button type="submit" class="primary">${editing?'حفظ التعديل':'حفظ العملية'}</button>
-        </form>
-      </div></div>`;
+      return `<div class="app"><div class="screen">${topBar(editing?'تعديل العملية':'إضافة العملية','',true,true)}<form id="txForm"><div class="field"><div class="label">نوع العملية</div><div class="row"><button type="button" class="chip ${defaultType==='EXPENSE'?'active':''}" data-type="EXPENSE">💸 مصروف</button><button type="button" class="chip ${defaultType==='INCOME'?'active':''}" data-type="INCOME">💵 دخل</button></div></div><div class="field"><div class="label">المبلغ</div><input class="input" id="amount" placeholder="أدخل المبلغ" inputmode="decimal" value="${escapeAttr(defaultAmount)}" /></div><div class="field"><div class="label">العملة</div><div class="row"><button type="button" class="chip ${defaultCurrency==='SYP'?'active':''}" data-currency="SYP"><span class="syria-flag"><span class="stars">★ ★ ★</span></span> ليرة سورية</button><button type="button" class="chip ${defaultCurrency==='USD'?'active':''}" data-currency="USD">💲 دولار</button></div></div><div class="field"><div class="label">التصنيف</div><div class="row" id="categories"></div></div><div class="field" id="customCategoryWrap" style="display:none;"><div class="label">اسم مخصص</div><input class="input" id="customCategory" placeholder="اكتب اسم التصنيف" value="${escapeAttr(defaultCustom)}" /></div><div class="field"><div class="label">ملاحظة</div><textarea class="textarea" id="note" placeholder="ملاحظة اختيارية">${defaultNote||''}</textarea></div><button type="submit" class="primary">${editing?'حفظ التعديل':'حفظ العملية'}</button></form></div></div>`;
     }
 
-    function reportsView(){
-      const weekTx=transactions.filter(t=>inWeek(t.createdAt,selectedDate));
+    function buildCurrencyReport(currency){
+      const label=currency==='SYP'?'الليرة السورية':'الدولار';
+      const weekTx=transactions.filter(t=>t.currency===currency && inWeek(transactionDateKey(t),selectedDate));
       const prevWeekRef=previousWeekDate(selectedDate);
-      const prevWeekTx=transactions.filter(t=>inWeek(t.createdAt,prevWeekRef));
+      const prevWeekTx=transactions.filter(t=>t.currency===currency && inWeek(transactionDateKey(t),prevWeekRef));
       const weekExpenses=weekTx.filter(t=>t.type==='EXPENSE');
       const weekIncome=weekTx.filter(t=>t.type==='INCOME');
       const expenseTotal=weekExpenses.reduce((s,t)=>s+t.amount,0);
@@ -833,49 +817,234 @@ function bottomNav(){
       const categoryTotals={}; weekExpenses.forEach(t=>categoryTotals[t.category]=(categoryTotals[t.category]||0)+t.amount);
       const sortedCategories=Object.entries(categoryTotals).sort((a,b)=>b[1]-a[1]);
       const topCategory=sortedCategories[0]||null, secondCategory=sortedCategories[1]||null;
-      const dayTotals={}; weekExpenses.forEach(t=>{ const key=new Date(t.createdAt).toISOString().slice(0,10); dayTotals[key]=(dayTotals[key]||0)+t.amount; });
+      const dayTotals={}; weekExpenses.forEach(t=>{ const key=transactionDateKey(t); dayTotals[key]=(dayTotals[key]||0)+t.amount; });
       const topDay=Object.entries(dayTotals).sort((a,b)=>b[1]-a[1])[0]||null;
-      const activeDebts=debts.filter(d=>!d.paid);
-      const toMeActive=activeDebts.filter(d=>d.kind==='TO_ME'); const onMeActive=activeDebts.filter(d=>d.kind==='ON_ME');
-      const debtByPerson={}; activeDebts.forEach(d=>debtByPerson[d.personName]=(debtByPerson[d.personName]||0)+d.amount);
-      const topDebtPerson=Object.entries(debtByPerson).sort((a,b)=>b[1]-a[1])[0]||null;
-      const avg7=recentDailyExpenseAverage(7), todayExpense=transactions.filter(t=>t.type==='EXPENSE' && sameDay(t.createdAt,new Date())).reduce((s,t)=>s+t.amount,0);
       const compareRatio=prevExpenseTotal>0?((expenseTotal-prevExpenseTotal)/prevExpenseTotal)*100:0;
-      const compareText=prevExpenseTotal===0?'هذا أول أسبوع واضح للقياس داخل التطبيق.':(expenseTotal>prevExpenseTotal?`مصروف هذا الأسبوع أعلى من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`:`مصروف هذا الأسبوع أقل من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`);
+      const compareText=prevExpenseTotal===0?'هذا أول أسبوع واضح للقياس داخل التطبيق.' : (expenseTotal>prevExpenseTotal?`مصروف هذا الأسبوع أعلى من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`:`مصروف هذا الأسبوع أقل من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`);
+      return {currency,label,weekExpenses,weekIncome,expenseTotal,incomeTotal,net,topExpenseTx,topCategory,secondCategory,topDay,compareText};
+    }
+
+    function reportsView(){
+      const weekTx = transactions.filter(t=>inWeek(transactionDateKey(t),selectedDate));
+      const prevWeekRef = previousWeekDate(selectedDate);
+      const prevWeekTx = transactions.filter(t=>inWeek(transactionDateKey(t),prevWeekRef));
+
+      const weekTxSYP = weekTx.filter(t=>t.currency==='SYP');
+      const prevWeekTxSYP = prevWeekTx.filter(t=>t.currency==='SYP');
+
+      const weekExpenses = weekTxSYP.filter(t=>t.type==='EXPENSE');
+      const weekIncome = weekTxSYP.filter(t=>t.type==='INCOME');
+      const prevWeekExpenses = prevWeekTxSYP.filter(t=>t.type==='EXPENSE');
+
+      const expenseTotal = weekExpenses.reduce((s,t)=>s+t.amount,0);
+      const incomeTotal = weekIncome.reduce((s,t)=>s+t.amount,0);
+      const net = incomeTotal - expenseTotal;
+      const prevExpenseTotal = prevWeekExpenses.reduce((s,t)=>s+t.amount,0);
+
+      const topExpenseTx = weekExpenses.slice().sort((a,b)=>b.amount-a.amount)[0] || null;
+
+      const categoryTotals = {};
+      weekExpenses.forEach(t=>{
+        const key = getDisplayCategory(t);
+        categoryTotals[key] = (categoryTotals[key] || 0) + t.amount;
+      });
+      const sortedCategories = Object.entries(categoryTotals).sort((a,b)=>b[1]-a[1]);
+      const topCategory = sortedCategories[0] || null;
+      const secondCategory = sortedCategories[1] || null;
+
+      const dayTotals = {};
+      weekExpenses.forEach(t=>{
+        const key = transactionDateKey(t);
+        dayTotals[key] = (dayTotals[key] || 0) + t.amount;
+      });
+      const sortedDays = Object.entries(dayTotals).sort((a,b)=>b[1]-a[1]);
+      const topDay = sortedDays[0] || null;
+
+      const activeDaysCount = Object.keys(dayTotals).length || 0;
+      const avgDailySpend = activeDaysCount ? (expenseTotal / activeDaysCount) : 0;
+      const expenseCount = weekExpenses.length;
+      const avgPerExpense = expenseCount ? (expenseTotal / expenseCount) : 0;
+
+      const compareRatio = prevExpenseTotal>0 ? (((expenseTotal-prevExpenseTotal)/prevExpenseTotal)*100) : 0;
+      const compareText =
+        prevExpenseTotal===0
+          ? 'هذا أول أسبوع واضح للقياس داخل التطبيق.'
+          : (expenseTotal>prevExpenseTotal
+            ? `مصروف هذا الأسبوع أعلى من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`
+            : expenseTotal<prevExpenseTotal
+              ? `مصروف هذا الأسبوع أقل من الأسبوع الماضي بحوالي ${Math.abs(compareRatio).toFixed(0)}٪.`
+              : 'مصروف هذا الأسبوع قريب جدًا من الأسبوع الماضي.');
+
+      const activeDebts = debts.filter(d=>!d.paid);
+      const debtCounts = {
+        toMe: activeDebts.filter(d=>d.kind==='TO_ME').length,
+        onMe: activeDebts.filter(d=>d.kind==='ON_ME').length
+      };
+      const debtSypToMe = activeDebts.filter(d=>d.kind==='TO_ME' && d.currency==='SYP').reduce((s,d)=>s+d.amount,0);
+      const debtSypOnMe = activeDebts.filter(d=>d.kind==='ON_ME' && d.currency==='SYP').reduce((s,d)=>s+d.amount,0);
+
+      const debtPersonMap = {};
+      activeDebts.forEach(d=>{
+        if(!debtPersonMap[d.personName]){
+          debtPersonMap[d.personName] = {name:d.personName, count:0, syp:0, usd:0};
+        }
+        debtPersonMap[d.personName].count += 1;
+        if(d.currency==='SYP') debtPersonMap[d.personName].syp += d.amount;
+        if(d.currency==='USD') debtPersonMap[d.personName].usd += d.amount;
+      });
+      const topDebtPerson = Object.values(debtPersonMap).sort((a,b)=>{
+        if(b.count!==a.count) return b.count-a.count;
+        return b.syp-a.syp;
+      })[0] || null;
+
+      const avg7 = recentDailyExpenseAverage(7,'SYP');
+      const todayExpense = transactions.filter(t=>t.type==='EXPENSE' && t.currency==='SYP' && transactionDateKey(t)===todayStr()).reduce((s,t)=>s+t.amount,0);
+
+      function spendingHealthText(){
+        if(expenseTotal===0 && incomeTotal===0) return 'لا توجد بيانات كافية لهذا الأسبوع بعد.';
+        if(expenseTotal===0 && incomeTotal>0) return 'أسبوع ممتاز حتى الآن، دخل موجود بدون مصروفات مسجلة.';
+        if(net >= 0 && expenseTotal <= avg7*7) return 'الوضع المالي هذا الأسبوع متوازن بشكل جيد.';
+        if(net < 0) return 'صافي الأسبوع سلبي، والأفضل تخفيف أكبر فئة صرف فورًا.';
+        return 'في ضغط صرف واضح هذا الأسبوع، لكن يمكن السيطرة عليه بالمراجعة السريعة.';
+      }
+
       function panelSpending(){
         return `<div class="insight-panel">
-          <div class="insight-head"><div><div class="insight-head-title">تحليل الإنفاق الأسبوعي</div><div class="insight-head-sub">تحليل من الجمعة إلى الخميس بناءً على أسبوعك المالي الحقيقي.</div></div><div class="smart-badge">أسبوعي</div></div>
+          <div class="insight-head">
+            <div>
+              <div class="insight-head-title">تحليل الإنفاق</div>
+              <div class="insight-head-sub">قراءة أسبوعية دقيقة مبنية على عمليات الليرة السورية فقط.</div>
+            </div>
+            <div class="smart-badge">أسبوعي</div>
+          </div>
+
           <div class="insight-kpis">
-            <div class="insight-kpi"><div class="insight-kpi-label">إجمالي مصروف الأسبوع</div><div class="insight-kpi-value">${fmt(expenseTotal,'SYP')}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">صافي الأسبوع</div><div class="insight-kpi-value">${fmt(net,'SYP')}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">أعلى عملية</div><div class="insight-kpi-value">${topExpenseTx?fmt(topExpenseTx.amount,topExpenseTx.currency):'لا يوجد'}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">دخل الأسبوع</div><div class="insight-kpi-value">${fmt(incomeTotal,'SYP')}</div></div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">إجمالي مصروف الأسبوع</div>
+              <div class="insight-kpi-value">${fmt(expenseTotal,'SYP')}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">صافي الأسبوع</div>
+              <div class="insight-kpi-value">${fmt(net,'SYP')}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">أعلى عملية</div>
+              <div class="insight-kpi-value">${topExpenseTx?fmt(topExpenseTx.amount,'SYP'):'لا يوجد'}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">متوسط الصرف اليومي</div>
+              <div class="insight-kpi-value">${fmt(avgDailySpend,'SYP')}</div>
+            </div>
           </div>
+
           <div class="insight-list">
-            <div class="insight-item"><div class="insight-item-title">الفئة المسيطرة</div><div class="insight-item-text">${topCategory?`الفئة الأقوى هذا الأسبوع هي <b>${topCategory[0]}</b> بقيمة ${fmt(topCategory[1],'SYP')}. ${secondCategory?`وتليها <b>${secondCategory[0]}</b>.`:''}`:'لا توجد بيانات كافية بعد.'}</div></div>
-            <div class="insight-item"><div class="insight-item-title">يوم الذروة</div><div class="insight-item-text">${topDay?`أعلى يوم صرف عندك كان <b>${topDay[0]}</b> بقيمة ${fmt(Number(topDay[1]),'SYP')}.`:'لا توجد بيانات كافية بعد.'}</div></div>
-            <div class="insight-item"><div class="insight-item-title">المقارنة بالأسبوع الماضي</div><div class="insight-item-text">${compareText}</div></div>
+            <div class="insight-item">
+              <div class="insight-item-title">الفئة المسيطرة</div>
+              <div class="insight-item-text">
+                ${topCategory
+                  ? `الفئة الأعلى هذا الأسبوع هي <b>${topCategory[0]}</b> بقيمة ${fmt(topCategory[1],'SYP')}.${secondCategory?` وتليها <b>${secondCategory[0]}</b>.`:''}`
+                  : 'لا توجد مصروفات كافية لتحديد الفئة المسيطرة بعد.'}
+              </div>
+            </div>
+
+            <div class="insight-item">
+              <div class="insight-item-title">يوم الذروة</div>
+              <div class="insight-item-text">
+                ${topDay
+                  ? `أعلى يوم صرف عندك كان <b>${dayLabel(topDay[0])}</b> بقيمة ${fmt(Number(topDay[1]),'SYP')}.`
+                  : 'لم يظهر يوم ذروة بعد ضمن هذا الأسبوع.'}
+              </div>
+            </div>
+
+            <div class="insight-item">
+              <div class="insight-item-title">مقارنة بالأسبوع الماضي</div>
+              <div class="insight-item-text">${compareText}</div>
+            </div>
+
+            <div class="insight-item">
+              <div class="insight-item-title">قراءة ذكية سريعة</div>
+              <div class="insight-item-text">
+                ${spendingHealthText()} ${expenseCount ? `عدد عمليات الصرف المسجلة هذا الأسبوع هو <b>${expenseCount}</b> ومتوسط العملية الواحدة <b>${fmt(avgPerExpense,'SYP')}</b>.` : ''}
+              </div>
+            </div>
           </div>
-          <div class="insight-note">النصيحة الذكية: ${topCategory?`أكبر ضغط عليك الآن من فئة ${topCategory[0]}. أي تخفيف بسيط فيها سيعطيك فرقًا واضحًا.`:'استمر بتسجيل العمليات ليصبح التحليل أذكى.'}</div>
+
+          <div class="insight-note">
+            ${topCategory
+              ? `النصيحة الذكية: راقب فئة ${topCategory[0]} أولًا، لأنها صاحبة الأثر الأكبر على ميزانيتك هذا الأسبوع.`
+              : 'النصيحة الذكية: استمر بتسجيل العمليات يوميًا حتى تصبح القراءة أذكى وأدق.'}
+          </div>
         </div>`;
       }
+
       function panelDebts(){
-        const toMeTotal=toMeActive.reduce((s,d)=>s+d.amount,0), onMeTotal=onMeActive.reduce((s,d)=>s+d.amount,0);
         return `<div class="insight-panel">
-          <div class="insight-head"><div><div class="insight-head-title">تحليل الديون</div><div class="insight-head-sub">قراءة سريعة لحالتك الحالية في الديون والمتابعات المفتوحة.</div></div><div class="smart-badge">ديون</div></div>
+          <div class="insight-head">
+            <div>
+              <div class="insight-head-title">تحليل الديون</div>
+              <div class="insight-head-sub">ملخص أوضح للمتابعات المفتوحة بدون خلط مربك بين التفاصيل.</div>
+            </div>
+            <div class="smart-badge">ديون</div>
+          </div>
+
           <div class="insight-kpis">
-            <div class="insight-kpi"><div class="insight-kpi-label">ديون لك</div><div class="insight-kpi-value">${fmt(toMeTotal,'SYP')}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">ديون عليك</div><div class="insight-kpi-value">${fmt(onMeTotal,'SYP')}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">سجلات نشطة</div><div class="insight-kpi-value">${activeDebts.length}</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-label">أكبر اسم</div><div class="insight-kpi-value">${topDebtPerson?topDebtPerson[0]:'لا يوجد'}</div></div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">سجلات نشطة</div>
+              <div class="insight-kpi-value">${activeDebts.length}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">ديون لك</div>
+              <div class="insight-kpi-value">${debtCounts.toMe}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">ديون عليك</div>
+              <div class="insight-kpi-value">${debtCounts.onMe}</div>
+            </div>
+            <div class="insight-kpi">
+              <div class="insight-kpi-label">أبرز اسم</div>
+              <div class="insight-kpi-value">${topDebtPerson?topDebtPerson.name:'لا يوجد'}</div>
+            </div>
           </div>
+
           <div class="insight-list">
-            <div class="insight-item"><div class="insight-item-title">الوضع الحالي</div><div class="insight-item-text">${onMeTotal > toMeTotal ? 'الديون التي عليك أعلى من الديون التي لك، لذلك الأفضل تخفيف التزاماتك أولًا.' : 'الديون التي لك تغطي أو تتجاوز ما عليك، ووضعك هنا أفضل.'}</div></div>
-            <div class="insight-item"><div class="insight-item-title">أهم شخص الآن</div><div class="insight-item-text">${topDebtPerson?`أكبر تعامل نشط حاليًا مع <b>${topDebtPerson[0]}</b> بقيمة تقريبية ${fmt(topDebtPerson[1],'SYP')}.`:'لا توجد ديون نشطة الآن.'}</div></div>
+            <div class="insight-item">
+              <div class="insight-item-title">الوضع الحالي</div>
+              <div class="insight-item-text">
+                ${activeDebts.length
+                  ? (debtCounts.onMe > debtCounts.toMe
+                      ? 'عدد الديون التي عليك حاليًا أكبر من الديون التي لك، والأفضل ترتيب الأولويات والبدء بالأقرب تسديدًا.'
+                      : 'وضع الديون مقبول حاليًا، وعدد السجلات التي لك ليس أقل من السجلات التي عليك.')
+                  : 'لا توجد ديون نشطة الآن، وهذا ممتاز.'}
+              </div>
+            </div>
+
+            <div class="insight-item">
+              <div class="insight-item-title">قراءة الليرة السورية</div>
+              <div class="insight-item-text">
+                ${activeDebts.length
+                  ? `في الليرة السورية لديك ${fmt(debtSypToMe,'SYP')} كديون لك، و${fmt(debtSypOnMe,'SYP')} كديون عليك.`
+                  : 'لا توجد حركة ديون نشطة بالليرة السورية حاليًا.'}
+              </div>
+            </div>
+
+            <div class="insight-item">
+              <div class="insight-item-title">أهم متابعة</div>
+              <div class="insight-item-text">
+                ${topDebtPerson
+                  ? `الشخص الأبرز حاليًا هو <b>${topDebtPerson.name}</b> بعدد <b>${topDebtPerson.count}</b> سجل نشط.`
+                  : 'لا توجد متابعة مفتوحة الآن.'}
+              </div>
+            </div>
           </div>
-          <div class="insight-note">النصيحة الذكية: ${topDebtPerson?`ادخل على صفحة ${topDebtPerson[0]} وراجع إذا في سجل جاهز للتحويل إلى “تم التسديد”.`:'استمر بالمحافظة على سجل الديون نظيفًا ومحدثًا.'}</div>
+
+          <div class="insight-note">
+            ${topDebtPerson
+              ? `النصيحة الذكية: افتح صفحة ${topDebtPerson.name} أولًا، لأنها تحتوي على أكبر تركيز متابعة الآن.`
+              : 'النصيحة الذكية: حافظ على تحديث الديون أولًا بأول حتى يبقى التحليل واضحًا.'}
+          </div>
         </div>`;
       }
+
       function panelAlerts(){
         const alerts=[];
         if(todayTransactionsCount()===0) alerts.push(['اليوم فارغ','لم تسجل أي عملية اليوم، وهذا يرفع احتمال نسيان مصاريف صغيرة.']);
@@ -883,38 +1052,82 @@ function bottomNav(){
         if(todayExpense>avg7 && todayExpense>0) alerts.push(['صرف اليوم مرتفع','مصروفك اليوم أعلى من متوسط آخر 7 أيام.']);
         if(activeDebts.length>0) alerts.push(['ديون نشطة',`عندك ${activeDebts.length} سجل ديون نشط يحتاج متابعة.`]);
         if(net<0) alerts.push(['الصافي سلبي','مصروفك الحالي أعلى من دخلك هذا الأسبوع.']);
-        if(!alerts.length) alerts.push(['الوضع ممتاز','لا توجد تنبيهات قوية الآن، وضعك المالي الحالي هادئ ومتزن.']);
+        if(!alerts.length) alerts.push(['الوضع ممتاز','لا توجد تنبيهات قوية الآن، ووضعك المالي الحالي هادئ ومتزن.']);
+
         return `<div class="insight-panel">
-          <div class="insight-head"><div><div class="insight-head-title">التنبيهات الذكية</div><div class="insight-head-sub">تنبيهات مبنية على أسبوعك الحالي واستخدامك الفعلي.</div></div><div class="smart-badge">تنبيهات</div></div>
-          <div class="insight-list">${alerts.map(a=>`<div class="insight-item"><div class="insight-item-title">${a[0]}</div><div class="insight-item-text">${a[1]}</div></div>`).join('')}</div>
-          <div class="insight-note">النصيحة الذكية: افتح الإشعارات من الأعلى وتأكد أنها مفعلة حتى تصلك هذه التنبيهات في وقتها.</div>
+          <div class="insight-head">
+            <div>
+              <div class="insight-head-title">تنبيهات ذكية</div>
+              <div class="insight-head-sub">تنبيهات عملية مبنية على أسبوعك الحالي واستخدامك الفعلي.</div>
+            </div>
+            <div class="smart-badge">تنبيهات</div>
+          </div>
+
+          <div class="insight-list">
+            ${alerts.map(a=>`<div class="insight-item"><div class="insight-item-title">${a[0]}</div><div class="insight-item-text">${a[1]}</div></div>`).join('')}
+          </div>
+
+          <div class="insight-note">النصيحة الذكية: أفضل نتيجة تحصل عليها عندما تسجل يوميًا وتراجع المحلل مرة واحدة على الأقل في نهاية كل أسبوع.</div>
         </div>`;
       }
+
       return `<div class="app"><div class="screen">
-        ${topBar('المحلل الذكي','🧠 قراءة أسبوعية أوضح',false)}
-        <div class="insights-hero"><div class="insights-title">المحلل الذكي</div><div class="insights-sub">هنا لن ترى أرقامًا فقط، بل تفسيرًا أوضح لما يحدث في أسبوعك المالي من الجمعة إلى الخميس.</div></div>
+        ${topBar('المحلل الذكي','',false)}
+        <div class="insights-hero">
+          <div class="insights-title">المحلل الذكي</div>
+          <div class="insights-sub">قراءة أوضح لأسبوعك المالي، مع تحليل صرف أدق وملاحظات عملية تساعدك على القرار.</div>
+        </div>
+
         <div class="insight-tabs">
           <button class="insight-tab ${smartTab==='spending'?'active':''}" onclick="setSmartTab('spending')">تحليل الإنفاق</button>
           <button class="insight-tab ${smartTab==='debts'?'active':''}" onclick="setSmartTab('debts')">تحليل الديون</button>
           <button class="insight-tab ${smartTab==='alerts'?'active':''}" onclick="setSmartTab('alerts')">تنبيهات ذكية</button>
         </div>
-        ${smartTab==='spending'?panelSpending():smartTab==='debts'?panelDebts():panelAlerts()}
+
+        ${smartTab==='spending' ? panelSpending() : smartTab==='debts' ? panelDebts() : panelAlerts()}
       </div>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}</div>`;
     }
 
     function historyView(){
       const weeks=historyWeeks();
       if(!selectedHistoryWeek && weeks.length) selectedHistoryWeek=weeks[0];
-      const filtered=transactions.slice().sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).filter(t=>{
-        const matchesWeek=!selectedHistoryWeek || financialWeekKey(t.createdAt)===selectedHistoryWeek;
-        return matchesWeek;
-      });
-      const selectedWeekLabel=selectedHistoryWeek?financialWeekLabel(new Date(selectedHistoryWeek)):'كل الأسابيع';
+
+      const filtered=transactions
+        .slice()
+        .sort((a,b)=>txDateObject(b)-txDateObject(a))
+        .filter(t=>!selectedHistoryWeek || financialWeekKey(txDateObject(t))===selectedHistoryWeek);
+
+      const selectedWeekLabel=selectedHistoryWeek?financialWeekLabel(parseLocalDateKey(selectedHistoryWeek)):'كل الأسابيع';
+      const weekExpenseTotal = filtered.filter(t=>t.type==='EXPENSE' && t.currency==='SYP').reduce((s,t)=>s+t.amount,0);
+      const weekIncomeTotal = filtered.filter(t=>t.type==='INCOME' && t.currency==='SYP').reduce((s,t)=>s+t.amount,0);
+      const weekCount = filtered.length;
+
       return `<div class="app"><div class="screen">
-        ${topBar('السجل الكامل','📚 اختر أي أسبوع سابق',true,true)}
-        <div class="search-wrap"><div class="search-box"><input id="historySearchInput" class="input search-input" placeholder="ابحث باسم العملية أو التصنيف..." value="${(historySearch||'').replace(/"/g,'&quot;')}" oninput="liveFilterHistory(this.value)" /><span class="search-icon">🔎</span></div></div>
+        ${topBar('السجل الكامل','',true,true)}
+
+        <div class="history-summary-card">
+          <div class="history-summary-top">
+            <div>
+              <div class="history-summary-title">ملخص الأسبوع المختار</div>
+              <div class="history-summary-sub">${selectedWeekLabel}</div>
+            </div>
+            <div class="history-summary-value">${fmt(weekExpenseTotal,'SYP')}</div>
+          </div>
+          <div class="history-summary-sub">إجمالي مصروف الأسبوع المختار بالليرة السورية.${weekIncomeTotal>0 ? ` دخل الأسبوع: ${fmt(weekIncomeTotal,'SYP')}.` : ''} عدد العمليات: ${weekCount}</div>
+        </div>
+
+        <div class="history-search-card">
+          <div class="search-box">
+            <input id="historySearchInput" class="input search-input" placeholder="ابحث باسم العملية أو التصنيف..." value="${(historySearch||'').replace(/"/g,'&quot;')}" oninput="liveFilterHistory(this.value)" />
+            <span class="search-icon">🔎</span>
+          </div>
+        </div>
+
         <div class="section-head"><div class="section-title">الأسابيع</div><div class="section-sub">${weeks.length} أسبوع</div></div>
-        <div class="row" style="margin-top:12px;">${weeks.length?weeks.map((k,index)=>{ const info=prettyHistoryWeekLabel(k,index); return `<button type="button" class="chip small week-chip ${selectedHistoryWeek===k?'active':''}" onclick="setHistoryWeek('${k}')"><span class="week-chip-title">${info.title}</span><span class="week-chip-sub">${info.sub}</span></button>`; }).join(''):'<span class="small-muted">لا توجد أسابيع محفوظة بعد</span>'}</div>
+        <div class="history-weeks-wrap">
+          <div class="row">${weeks.length?weeks.map((k,index)=>{ const info=prettyHistoryWeekLabel(k,index); return `<button type="button" class="chip small week-chip ${selectedHistoryWeek===k?'active':''}" onclick="setHistoryWeek('${k}')"><span class="week-chip-title">${info.title}</span><span class="week-chip-sub">${info.sub}</span></button>`; }).join(''):'<span class="small-muted">لا توجد أسابيع محفوظة بعد</span>'}</div>
+        </div>
+
         <div class="section-head"><div class="section-title">تفاصيل الأسبوع</div><div id="historyWeekLabel" class="section-sub">${selectedWeekLabel}</div></div>
         <div id="historyList" class="list">${filtered.length?filtered.map(renderHistoryTxCard).join(''):'<div class="card empty"><strong>لا توجد عمليات</strong><span>لا توجد عمليات ضمن هذا الأسبوع</span></div>'}</div>
       </div></div>`;
@@ -925,82 +1138,44 @@ function bottomNav(){
       const amountClass=d.kind==='TO_ME'?'income-c':'expense-c';
       const typeLabel=d.kind==='TO_ME'?'لي':'لهم';
       const badgeClass=d.kind==='TO_ME'?'to-me':'on-me';
-      return `<div class="card tx-card">
-        ${d.paid?'<div style="text-align:center;color:var(--green);font-weight:900;font-size:20px;margin-bottom:10px">تم التسديد</div>':''}
-        <div class="debt-top"><div><div class="debt-title">${iconBadge(d.reason||'قرض')}<span>${title}</span></div><div class="debt-date">${debtDateLabel(d.date)}</div></div><div><div class="debt-amount ${amountClass}">${fmt(d.amount,d.currency)}</div><div class="small-muted"><span class="debt-kind-badge ${badgeClass}">${typeLabel}</span></div></div></div>
-        <div class="debt-actions">${!d.paid?`<button class="ghost-ok" onclick="requestSettleDebt(${d.id})">تسديد</button><button class="ghost-edit" onclick="startEditDebt(${d.id})">تعديل</button>`:''}<button class="ghost-danger" onclick="requestDelete('debt',${d.id})">حذف</button></div>
-      </div>`;
+      return `<div class="card tx-card">${d.paid?'<div style="text-align:center;color:var(--green);font-weight:900;font-size:20px;margin-bottom:10px">تم التسديد</div>':''}<div class="debt-top"><div><div class="debt-title">${iconBadge(d.reason||'قرض')}<span>${title}</span></div><div class="debt-date">${debtDateLabel(debtDateObject(d))}</div></div><div><div class="debt-amount ${amountClass}">${fmt(d.amount,d.currency)}</div><div class="small-muted"><span class="debt-kind-badge ${badgeClass}">${typeLabel}</span></div></div></div><div class="debt-actions">${!d.paid?`<button class="ghost-ok" onclick="requestSettleDebt(${d.id})">تسديد</button><button class="ghost-edit" onclick="startEditDebt(${d.id})">تعديل</button>`:''}<button class="ghost-danger" onclick="requestDelete('debt',${d.id})">حذف</button></div></div>`;
     }
 
     function debtsView(){
       const toMeSYP=debtSummary('TO_ME','SYP'), toMeUSD=debtSummary('TO_ME','USD'), onMeSYP=debtSummary('ON_ME','SYP'), onMeUSD=debtSummary('ON_ME','USD');
-      const hasToMeActive=debts.some(d=>d.kind==='TO_ME' && !d.paid);
-      const hasOnMeActive=debts.some(d=>d.kind==='ON_ME' && !d.paid);
+      const hasToMeActive=debts.some(d=>d.kind==='TO_ME' && !d.paid); const hasOnMeActive=debts.some(d=>d.kind==='ON_ME' && !d.paid);
       const query=(debtSearch||'').trim().toLowerCase();
-      const suggestions=query?uniquePeople().filter(name=>name.toLowerCase().includes(query)).slice(0,6):[];
-      const people=uniquePeople().filter(name=>{
-        const hay=name.toLowerCase();
-        const matchesQuery=!query || hay.includes(query) || debts.some(d=>d.personName===name && ((d.reason||'')+' '+(d.customReason||'')).toLowerCase().includes(query));
-        const matchesKind=debtKindFilter==='ALL' || debts.some(d=>d.personName===name && d.kind===debtKindFilter && !d.paid);
-        return matchesQuery && matchesKind;
-      });
-      return `<div class="app"><div class="screen">
-        ${topBar('الديون','',false)}
-        <div class="card balance-card"><div class="balance-inner">
-          <div><div class="currency-label"><span class="syria-flag"><span class="stars">★ ★ ★</span></span><span>الليرة السورية</span></div><div class="currency-balance">${fmt(toMeSYP-onMeSYP,'SYP')}</div><div class="income">لي: ${fmt(toMeSYP,'SYP')}</div><div class="expense">لهم: ${fmt(onMeSYP,'SYP')}</div></div>
-          <div class="balance-sep"></div>
-          <div><div class="currency-label">الدولار</div><div class="currency-balance">${fmt(toMeUSD-onMeUSD,'USD')}</div><div class="income">لي: ${fmt(toMeUSD,'USD')}</div><div class="expense">لهم: ${fmt(onMeUSD,'USD')}</div></div>
-        </div></div>
-        <div class="search-wrap"><div class="search-box"><input id="debtSearchInput" class="input search-input" placeholder="ابحث باسم الشخص..." value="${(debtSearch||'').replace(/"/g,'&quot;')}" oninput="liveFilterDebts(this.value)" onfocus="liveFilterDebts(this.value)" /><span class="search-icon">🔎</span><div id="debtSuggestions" class="search-suggestions" style="display:none"></div></div></div>
-        <div class="row" style="margin-top:12px;">
-          <button type="button" class="chip ${debtKindFilter==='ALL'?'active':''}" onclick="debtKindFilter='ALL'; render()">الكل</button>
-          <button type="button" class="chip ${hasToMeActive?'has-dot':''} ${debtKindFilter==='TO_ME'?'active':''}" onclick="debtKindFilter='TO_ME'; render()">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button>
-          <button type="button" class="chip ${hasOnMeActive?'has-dot':''} ${debtKindFilter==='ON_ME'?'active':''}" onclick="debtKindFilter='ON_ME'; render()">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button>
-        </div>
-        <div class="section-head"><div class="section-title">الأشخاص</div><div id="debtsCount" class="section-sub">${people.length} شخص</div></div>
-        <div id="debtsPeopleList" class="list">${people.length?people.map(name=>{const active=debts.some(d=>d.personName===name && !d.paid); const searchText=(name+' '+debts.filter(d=>d.personName===name).map(d=>((d.reason||'')+' '+(d.customReason||''))).join(' ')).toLowerCase().replace(/"/g,'&quot;'); const kind=(debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid)?'TO_ME ':'') + (debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid)?'ON_ME':''); return `<div class="card tx-card debt-person-card" data-search="${searchText}" data-person-name="${name.replace(/"/g,'&quot;')}" data-kind="${kind.trim()}" onclick="openPerson('${name.replace(/'/g,"\\'")}')" style="cursor:pointer"><div class="tx-top"><div><div class="tx-title">👤 <span>${name}</span></div><div class="tx-date" style="color:${active?'var(--green)':'var(--muted)'};font-weight:700">${active?'يوجد تعاملات نشطة':'لا يوجد تعاملات'}</div></div><div></div></div><div class="tx-actions"><button class="ghost-danger" onclick="event.stopPropagation(); requestDeletePerson('${name.replace(/'/g,"\\'")}')">حذف</button></div></div>`}).join(''):'<div class="card empty"><strong>لا يوجد أي ديون</strong><span>أضف شخصًا جديدًا</span></div>'}</div>
-      </div><button class="fab" onclick="openAddPerson()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
+      const people=uniquePeople().filter(name=>{ const hay=name.toLowerCase(); const matchesQuery=!query || hay.includes(query) || debts.some(d=>d.personName===name && ((d.reason||'')+' '+(d.customReason||'')).toLowerCase().includes(query)); const matchesKind=debtKindFilter==='ALL' || debts.some(d=>d.personName===name && d.kind===debtKindFilter && !d.paid); return matchesQuery && matchesKind; });
+      return `<div class="app"><div class="screen">${topBar('الديون','',false)}<div class="card balance-card"><div class="balance-inner"><div><div class="currency-label"><span class="syria-flag"><span class="stars">★ ★ ★</span></span><span>الليرة السورية</span></div><div class="currency-balance">${fmt(toMeSYP-onMeSYP,'SYP')}</div><div class="income">لي: ${fmt(toMeSYP,'SYP')}</div><div class="expense">لهم: ${fmt(onMeSYP,'SYP')}</div></div><div class="balance-sep"></div><div><div class="currency-label">الدولار</div><div class="currency-balance">${fmt(toMeUSD-onMeUSD,'USD')}</div><div class="income">لي: ${fmt(toMeUSD,'USD')}</div><div class="expense">لهم: ${fmt(onMeUSD,'USD')}</div></div></div></div><div class="search-wrap"><div class="search-box"><input id="debtSearchInput" class="input search-input" placeholder="ابحث باسم الشخص..." value="${escapeAttr(debtSearch||'')}" oninput="liveFilterDebts(this.value)" onfocus="liveFilterDebts(this.value)" /><span class="search-icon">🔎</span><div id="debtSuggestions" class="search-suggestions" style="display:none"></div></div></div><div class="row" style="margin-top:12px;"><button type="button" class="chip ${debtKindFilter==='ALL'?'active':''}" onclick="debtKindFilter='ALL'; render()">الكل</button><button type="button" class="chip ${hasToMeActive?'has-dot':''} ${debtKindFilter==='TO_ME'?'active':''}" onclick="debtKindFilter='TO_ME'; render()">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button><button type="button" class="chip ${hasOnMeActive?'has-dot':''} ${debtKindFilter==='ON_ME'?'active':''}" onclick="debtKindFilter='ON_ME'; render()">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button></div><div class="section-head"><div class="section-title">الأشخاص</div><div id="debtsCount" class="section-sub">${people.length} شخص</div></div><div id="debtsPeopleList" class="list">${people.length?people.map(name=>{ const active=debts.some(d=>d.personName===name && !d.paid); const searchText=(name+' '+debts.filter(d=>d.personName===name).map(d=>((d.reason||'')+' '+(d.customReason||''))).join(' ')).toLowerCase(); const kind=(debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid)?'TO_ME ':'') + (debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid)?'ON_ME':''); return `<div class="card tx-card debt-person-card" data-search="${escapeAttr(searchText)}" data-person-name="${escapeAttr(name)}" data-kind="${kind.trim()}" onclick="openPerson('${escapeJs(name)}')" style="cursor:pointer"><div class="tx-top"><div><div class="tx-title">👤 <span>${name}</span></div><div class="tx-date" style="color:${active?'var(--green)':'var(--muted)'};font-weight:700">${active?'يوجد تعاملات نشطة':'لا يوجد تعاملات'}</div></div><div></div></div><div class="tx-actions"><button class="ghost-danger" onclick="event.stopPropagation(); requestDeletePerson('${escapeJs(name)}')">حذف</button></div></div>`; }).join(''):'<div class="card empty"><strong>لا يوجد أي ديون</strong><span>أضف شخصًا جديدًا</span></div>'}</div></div><button class="fab" onclick="openAddPerson()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
     }
 
     function personView(){
       const name=personViewName||'', allList=sortDebtsForView(debts.filter(d=>d.personName===name)), list=allList.filter(d=>d.kind===personDebtTab), s=personDebtSummary(name);
-      const hasToMeActive=debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid);
-      const hasOnMeActive=debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid);
-      return `<div class="app"><div class="screen">
-        ${topBar(name,'صفحة الشخص',true,true)}
-        <div class="row" style="margin-top:12px;"><span class="person-pill">لي سوري: ${fmt(s.toMeSYP,'SYP')}</span><span class="person-pill">لي دولار: ${fmt(s.toMeUSD,'USD')}</span><span class="person-pill">لهم سوري: ${fmt(s.onMeSYP,'SYP')}</span><span class="person-pill">لهم دولار: ${fmt(s.onMeUSD,'USD')}</span></div>
-        <div class="row" style="margin-top:12px;"><button class="chip ${hasToMeActive?'has-dot':''} ${personDebtTab==='TO_ME'?'active':''}" onclick="setPersonDebtTab('TO_ME')">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button><button class="chip ${hasOnMeActive?'has-dot':''} ${personDebtTab==='ON_ME'?'active':''}" onclick="setPersonDebtTab('ON_ME')">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button></div>
-        <div class="section-head"><div class="section-title">السجلات</div><div class="section-sub">${list.length} سجل</div></div>
-        <div class="list">${list.length?list.map(renderDebtCard).join(''):'<div class="card empty"><strong>لا توجد سجلات</strong><span>لا توجد ديون في هذا القسم</span></div>'}</div>
-      </div><button class="fab" onclick="openAddDebtForPerson()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
+      const hasToMeActive=debts.some(d=>d.personName===name && d.kind==='TO_ME' && !d.paid); const hasOnMeActive=debts.some(d=>d.personName===name && d.kind==='ON_ME' && !d.paid);
+      return `<div class="app"><div class="screen">${topBar(name,'صفحة الشخص',true,true)}<div class="row" style="margin-top:12px;"><span class="person-pill">لي سوري: ${fmt(s.toMeSYP,'SYP')}</span><span class="person-pill">لي دولار: ${fmt(s.toMeUSD,'USD')}</span><span class="person-pill">لهم سوري: ${fmt(s.onMeSYP,'SYP')}</span><span class="person-pill">لهم دولار: ${fmt(s.onMeUSD,'USD')}</span></div><div class="row" style="margin-top:12px;"><button class="chip ${hasToMeActive?'has-dot':''} ${personDebtTab==='TO_ME'?'active':''}" onclick="setPersonDebtTab('TO_ME')">${hasToMeActive?'<span class="chip-dot"></span>':''}لي</button><button class="chip ${hasOnMeActive?'has-dot':''} ${personDebtTab==='ON_ME'?'active':''}" onclick="setPersonDebtTab('ON_ME')">${hasOnMeActive?'<span class="chip-dot"></span>':''}لهم</button></div><div class="section-head"><div class="section-title">السجلات</div><div class="section-sub">${list.length} سجل</div></div><div class="list">${list.length?list.map(renderDebtCard).join(''):'<div class="card empty"><strong>لا توجد سجلات</strong><span>لا توجد ديون في هذا القسم</span></div>'}</div></div><button class="fab" onclick="openAddDebtForPerson()"><span>+</span></button>${bottomNav()}${showWeekMenu ? weekMenuModal() : ''}${deleteConfirmModal()}${deletePersonConfirmModal()}${settleConfirmModal()}</div>`;
     }
 
-    function addPersonView(){
-      return `<div class="app"><div class="screen">
-        ${topBar('إضافة شخص','',true,true)}
-        <div class="card" style="padding:16px; margin-top:16px;">
-          <div class="field"><div class="label">اسم الشخص</div><input id="newPersonName" class="input" placeholder="اكتب اسم الشخص" /></div>
-          <button class="primary" onclick="savePersonPage()">حفظ الشخص</button>
-        </div>
-      </div></div>`;
-    }
-
-    function notificationsView(){
-      const items=notificationCenter.slice(0,20), permissionGranted=settings.notifications.permission==='granted';
-      return `<div class="app"><div class="screen">
-        ${topBar('الإشعارات','🔔 آخر التنبيهات',true,true)}
-        ${!permissionGranted?`<div class="card" style="padding:16px; margin-top:16px;"><div style="font-size:16px;font-weight:800">تفعيل إشعارات الموبايل</div><div class="small-muted" style="margin-top:6px">اضغط مرة واحدة فقط لتفعيل إشعارات التطبيق على جهازك.</div><button class="primary" style="margin-top:12px;" onclick="requestNotificationPermission()">تفعيل الإشعارات</button></div>`:''}
-        <div class="section-head"><div class="section-title">آخر الإشعارات</div><div class="section-sub">${items.length} إشعار</div></div>
-        <div class="notif-list">${items.length?items.map(item=>`<div class="notif-item"><div class="notif-item-top"><div class="notif-item-title">${item.title}</div><div class="notif-item-time">${new Date(item.createdAt).toLocaleString('en-GB')}</div></div><div class="notif-item-body">${item.body}</div></div>`).join(''):'<div class="card empty"><strong>لا توجد إشعارات</strong><span>ستظهر هنا آخر التذكيرات والتنبيهات</span></div>'}</div>
-      </div></div>`;
-    }
+    function addPersonView(){ return `<div class="app"><div class="screen">${topBar('إضافة شخص','',true,true)}<div class="card" style="padding:16px; margin-top:16px;"><div class="field"><div class="label">اسم الشخص</div><input id="newPersonName" class="input" placeholder="اكتب اسم الشخص" /></div><button class="primary" onclick="savePersonPage()">حفظ الشخص</button></div></div></div>`; }
+    function notificationsView(){ const items=notificationCenter.slice(0,20), permissionGranted=settings.notifications.permission==='granted'; return `<div class="app"><div class="screen">${topBar('الإشعارات','🔔 آخر التنبيهات',true,true)}${!permissionGranted?`<div class="card" style="padding:16px; margin-top:16px;"><div style="font-size:16px;font-weight:800">تفعيل إشعارات الموبايل</div><div class="small-muted" style="margin-top:6px">اضغط مرة واحدة فقط لتفعيل إشعارات التطبيق على جهازك.</div><button class="primary" style="margin-top:12px;" onclick="requestNotificationPermission()">تفعيل الإشعارات</button></div>`:''}<div class="section-head"><div class="section-title">آخر الإشعارات</div><div class="section-sub">${items.length} إشعار</div></div><div class="notif-list">${items.length?items.map(item=>`<div class="notif-item"><div class="notif-item-top"><div class="notif-item-title">${item.title}</div><div class="notif-item-time">${new Date(item.createdAt).toLocaleString('en-GB')}</div></div><div class="notif-item-body">${item.body}</div></div>`).join(''):'<div class="card empty"><strong>لا توجد إشعارات</strong><span>ستظهر هنا آخر التذكيرات والتنبيهات</span></div>'}</div></div></div>`; }
 
     function settingsView(){
       return `<div class="app"><div class="screen">
         ${topBar('الإعدادات','⚙️',false)}
-        <div class="card" style="padding:18px; margin-top:16px;">
+
+        <div class="settings-shortcut" style="margin-top:16px;">
+          <div class="settings-shortcut-head">
+            <div>
+              <div class="settings-shortcut-title">السجل الكامل</div>
+              <div class="settings-shortcut-text">استعرض العمليات السابقة حسب الأسبوع، مع ملخص واضح يساعدك على المراجعة السريعة.</div>
+            </div>
+            <div class="settings-shortcut-icon">🗂️</div>
+          </div>
+          <button class="settings-shortcut-btn" onclick="setScreen('history')">فتح السجل الكامل</button>
+        </div>
+
+        <div class="card" style="padding:18px; margin-top:14px;">
           <div class="section-title" style="font-size:18px;">المظهر</div>
-          <div class="small-muted">اختر نمط العرض المناسب لك داخل التطبيق</div>
+          <div class="small-muted">اختر نمط العرض الذي يناسبك داخل التطبيق</div>
           <div style="display:grid;gap:10px;margin-top:14px;">
             <button class="secondary-btn" style="${!settings.darkMode?'outline:2px solid var(--primary);font-weight:900;':''}" onclick="updateSetting('darkMode', false)">
               ☀️ المظهر الفاتح
@@ -1010,15 +1185,14 @@ function bottomNav(){
             </button>
           </div>
         </div>
-        <div class="settings-shortcut" style="margin-top:14px;">
-          <div class="settings-shortcut-head">
-            <div>
-              <div class="settings-shortcut-title">السجل الكامل</div>
-              <div class="settings-shortcut-text">راجع الأسابيع السابقة واستعرض كل العمليات بتفاصيل مرتبة وواضحة.</div>
-            </div>
-            <div class="settings-shortcut-icon">🗂️</div>
+
+        <div class="card" style="padding:18px; margin-top:14px;">
+          <div class="section-title" style="font-size:18px;">النسخة الاحتياطية</div>
+          <div class="small-muted">احفظ نسخة من بياناتك لاستعادتها لاحقًا عند تغيير الجهاز أو إعادة التثبيت.</div>
+          <div style="display:grid;gap:10px;margin-top:14px;">
+            <button class="primary" type="button" onclick="exportData()">إنشاء نسخة احتياطية</button>
+            <button class="secondary-btn" type="button" onclick="triggerImportData()">استعادة من نسخة احتياطية</button>
           </div>
-          <button class="settings-shortcut-btn" onclick="setScreen('history')">فتح السجل الكامل</button>
         </div>
       </div>${bottomNav()}</div>`;
     }
@@ -1026,20 +1200,8 @@ function bottomNav(){
     function addDebtView(){
       const editing=editingDebtId!=null ? debts.find(d=>d.id===editingDebtId) : null;
       const lockedName=editing ? editing.personName : debtFormPersonName;
-      const dateValue=editing ? normalizeDate(editing.date).toISOString().slice(0,10) : selectedDate.toISOString().slice(0,10);
-      return `<div class="app"><div class="screen">
-        ${topBar(editing?'تعديل الدين':'إضافة معاملة','',true,true)}
-        <form id="debtForm">
-          <div class="field"><div class="label">القسم</div><div class="row"><button type="button" class="chip ${(editing?editing.kind:'TO_ME')==='TO_ME'?'active':''}" data-kind="TO_ME">لي</button><button type="button" class="chip ${(editing?editing.kind:'TO_ME')==='ON_ME'?'active':''}" data-kind="ON_ME">لهم</button></div></div>
-          <div class="field"><div class="label">اسم الشخص</div><input class="input" id="personName" placeholder="اسم الشخص" ${lockedName?'readonly':''} value="${lockedName||''}" /></div>
-          <div class="field"><div class="label">المبلغ</div><input class="input" id="debtAmount" inputmode="decimal" placeholder="أدخل المبلغ" value="${editing?editing.amount:''}" /></div>
-          <div class="field"><div class="label">العملة</div><div class="row"><button type="button" class="chip ${(editing?editing.currency:'SYP')==='SYP'?'active':''}" data-currency="SYP"><span class="syria-flag"><span class="stars">★ ★ ★</span></span> ليرة سورية</button><button type="button" class="chip ${(editing?editing.currency:'SYP')==='USD'?'active':''}" data-currency="USD">💲 دولار</button></div></div>
-          <div class="field"><div class="label">سبب الدين</div><div class="row" id="debtReasonsWrap"></div></div>
-          <div class="field" id="customReasonWrap2" style="display:none;"><div class="label">سبب مخصص</div><input class="input" id="customReason2" placeholder="اكتب السبب" value="${editing?(editing.customReason||''):''}" /></div>
-          <div class="field"><div class="label">التاريخ</div><input class="input" id="debtDate" type="date" value="${dateValue}" /></div>
-          <button type="submit" class="primary">${editing?'حفظ التعديل':'حفظ المعاملة'}</button>
-        </form>
-      </div></div>`;
+      const dateValue=editing ? debtDateKey(editing) : dateKeyFromDate(selectedDate);
+      return `<div class="app"><div class="screen">${topBar(editing?'تعديل الدين':'إضافة معاملة','',true,true)}<form id="debtForm"><div class="field"><div class="label">القسم</div><div class="row"><button type="button" class="chip ${(editing?editing.kind:'TO_ME')==='TO_ME'?'active':''}" data-kind="TO_ME">لي</button><button type="button" class="chip ${(editing?editing.kind:'TO_ME')==='ON_ME'?'active':''}" data-kind="ON_ME">لهم</button></div></div><div class="field"><div class="label">اسم الشخص</div><input class="input" id="personName" placeholder="اسم الشخص" ${lockedName?'readonly':''} value="${escapeAttr(lockedName||'')}" /></div><div class="field"><div class="label">المبلغ</div><input class="input" id="debtAmount" inputmode="decimal" placeholder="أدخل المبلغ" value="${editing?escapeAttr(editing.amount):''}" /></div><div class="field"><div class="label">العملة</div><div class="row"><button type="button" class="chip ${(editing?editing.currency:'SYP')==='SYP'?'active':''}" data-currency="SYP"><span class="syria-flag"><span class="stars">★ ★ ★</span></span> ليرة سورية</button><button type="button" class="chip ${(editing?editing.currency:'SYP')==='USD'?'active':''}" data-currency="USD">💲 دولار</button></div></div><div class="field"><div class="label">سبب الدين</div><div class="row" id="debtReasonsWrap"></div></div><div class="field" id="customReasonWrap2" style="display:none;"><div class="label">سبب مخصص</div><input class="input" id="customReason2" placeholder="اكتب السبب" value="${editing?escapeAttr(editing.customReason||''):''}" /></div><div class="field"><div class="label">التاريخ</div><input class="input" id="debtDate" type="date" value="${dateValue}" /></div><button type="submit" class="primary">${editing?'حفظ التعديل':'حفظ المعاملة'}</button></form></div></div>`;
     }
 
     function bindAddForm(){
@@ -1047,50 +1209,27 @@ function bottomNav(){
       const editing=editingId!=null ? transactions.find(t=>t.id===editingId) : null;
       let type=editing?editing.type:'EXPENSE', currency=editing?editing.currency:'SYP', category=editing?editing.category:'قهوة';
       const categoriesWrap=document.getElementById('categories'), customWrap=document.getElementById('customCategoryWrap'), customInput=document.getElementById('customCategory');
-      function renderCategories(){
-        const list=type==='EXPENSE'?expenseCategories:incomeCategories;
-        if(!list.includes(category)) category=list[0];
-        categoriesWrap.innerHTML=list.map(c=>`<button type="button" class="chip small active-cat ${c===category?'active':''}" data-value="${c}">${iconBadge(c)} <span>${c}</span></button>`).join('');
-        customWrap.style.display=category==='أخرى'?'block':'none';
-        categoriesWrap.querySelectorAll('.active-cat').forEach(btn=>btn.addEventListener('click',()=>{ category=btn.dataset.value; renderCategories(); }));
-      }
+      function renderCategories(){ const list=type==='EXPENSE'?expenseCategories:incomeCategories; if(!list.includes(category)) category=list[0]; categoriesWrap.innerHTML=list.map(c=>`<button type="button" class="chip small active-cat ${c===category?'active':''}" data-value="${c}">${iconBadge(c)} <span>${c}</span></button>`).join(''); customWrap.style.display=category==='أخرى'?'block':'none'; categoriesWrap.querySelectorAll('.active-cat').forEach(btn=>btn.addEventListener('click',()=>{ category=btn.dataset.value; renderCategories(); })); }
       form.querySelectorAll('[data-type]').forEach(btn=>btn.addEventListener('click',()=>{ type=btn.dataset.type; form.querySelectorAll('[data-type]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderCategories(); }));
       form.querySelectorAll('[data-currency]').forEach(btn=>btn.addEventListener('click',()=>{ currency=btn.dataset.currency; form.querySelectorAll('[data-currency]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }));
       renderCategories();
-      form.addEventListener('submit',e=>{
-        e.preventDefault();
-        const amount=Number((document.getElementById('amount').value||'').replace(/[^0-9.]/g,'')); const note=(document.getElementById('note').value||'').trim(); const customName=(customInput.value||'').trim();
-        if(!amount || amount<=0){ showToast('أدخل مبلغًا صحيحًا'); return; }
-        saveTransaction({type,currency,amount,category,note,customName:category==='أخرى'?customName:''});
-      });
+      form.addEventListener('submit',e=>{ e.preventDefault(); const amount=Number((document.getElementById('amount').value||'').replace(/[^0-9.]/g,'')); const note=(document.getElementById('note').value||'').trim(); const customName=(customInput.value||'').trim(); if(!amount || amount<=0){ showToast('أدخل مبلغًا صحيحًا'); return; } saveTransaction({type,currency,amount,category,note,customName:category==='أخرى'?customName:'',dateKey:dateKeyFromDate(selectedDate)}); });
     }
     function bindDebtForm(){
       const form=document.getElementById('debtForm'); if(!form) return;
       const editing=editingDebtId!=null ? debts.find(d=>d.id===editingDebtId) : null;
       let kind=editing?editing.kind:'TO_ME', currency=editing?editing.currency:'SYP', reason=editing?editing.reason:'قرض';
       const reasonsWrap=document.getElementById('debtReasonsWrap'), customWrap=document.getElementById('customReasonWrap2'), customInput=document.getElementById('customReason2');
-      function renderReasons(){
-        if(!debtReasons.includes(reason)) reason='قرض';
-        reasonsWrap.innerHTML=debtReasons.map(c=>`<button type="button" class="chip small active-reason ${c===reason?'active':''}" data-value="${c}">${iconBadge(c)} <span>${c}</span></button>`).join('');
-        customWrap.style.display=reason==='أخرى'?'block':'none';
-        reasonsWrap.querySelectorAll('.active-reason').forEach(btn=>btn.addEventListener('click',()=>{ reason=btn.dataset.value; renderReasons(); }));
-      }
+      function renderReasons(){ if(!debtReasons.includes(reason)) reason='قرض'; reasonsWrap.innerHTML=debtReasons.map(c=>`<button type="button" class="chip small active-reason ${c===reason?'active':''}" data-value="${c}">${iconBadge(c)} <span>${c}</span></button>`).join(''); customWrap.style.display=reason==='أخرى'?'block':'none'; reasonsWrap.querySelectorAll('.active-reason').forEach(btn=>btn.addEventListener('click',()=>{ reason=btn.dataset.value; renderReasons(); })); }
       form.querySelectorAll('[data-kind]').forEach(btn=>btn.addEventListener('click',()=>{ kind=btn.dataset.kind; form.querySelectorAll('[data-kind]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }));
       form.querySelectorAll('[data-currency]').forEach(btn=>btn.addEventListener('click',()=>{ currency=btn.dataset.currency; form.querySelectorAll('[data-currency]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }));
       renderReasons();
-      form.addEventListener('submit',e=>{
-        e.preventDefault();
-        const personName=(document.getElementById('personName').value||'').trim();
-        const amount=Number((document.getElementById('debtAmount').value||'').replace(/[^0-9.]/g,'')); const dateValue=(document.getElementById('debtDate').value||selectedDate.toISOString().slice(0,10)); const customReason=(customInput.value||'').trim();
-        if(!personName){ showToast('اكتب اسم الشخص'); return; }
-        if(!amount || amount<=0){ showToast('أدخل مبلغًا صحيحًا'); return; }
-        saveDebt({personName,amount,currency,kind,reason,date:new Date(dateValue).toISOString(),customReason:reason==='أخرى'?customReason:'',paid:editing?editing.paid:false,paidAt:editing?editing.paidAt||null:null});
-      });
+      form.addEventListener('submit',e=>{ e.preventDefault(); const personName=(document.getElementById('personName').value||'').trim(); const amount=Number((document.getElementById('debtAmount').value||'').replace(/[^0-9.]/g,'')); const dateValue=(document.getElementById('debtDate').value||dateKeyFromDate(selectedDate)); const customReason=(customInput.value||'').trim(); if(!personName){ showToast('اكتب اسم الشخص'); return; } if(!amount || amount<=0){ showToast('أدخل مبلغًا صحيحًا'); return; } saveDebt({personName,amount,currency,kind,reason,dateKey:dateValue,customReason:reason==='أخرى'?customReason:'',paid:editing?editing.paid:false,paidAt:editing?editing.paidAt||null:null}); });
     }
 
     function applyTheme(){ document.body.classList.toggle('dark', !!settings.darkMode); }
     function render(){
-      applyTheme();
+      applyTheme(); bindBackupImport();
       if(showIntro){ app.innerHTML=introView(); return; }
       if(screen==='add'){ app.innerHTML=addView(); bindAddForm(); return; }
       if(screen==='addDebt'){ app.innerHTML=addDebtView(); bindDebtForm(); return; }
@@ -1101,23 +1240,19 @@ function bottomNav(){
       if(screen==='debts'){ app.innerHTML=debtsView(); return; }
       if(screen==='person'){ app.innerHTML=personView(); return; }
       if(screen==='settings'){ app.innerHTML=settingsView(); return; }
-      app.innerHTML=homeView();
-      bindAndRestoreDayStrip();
-      if(ensureSelectedDayVisible){
-        ensureSelectedDayVisibleNow();
-        ensureSelectedDayVisible=false;
-      }
+      app.innerHTML=homeView(); bindAndRestoreDayStrip(); if(ensureSelectedDayVisible){ ensureActiveDayVisibleNow(); ensureSelectedDayVisible=false; }
     }
 
-    window.setScreen=setScreen; window.goBack=goBack; window.startApp=startApp; window.openNotifications=openNotifications;
+    window.exportData=exportData; window.triggerImportData=triggerImportData; window.setScreen=setScreen; window.goBack=goBack; window.startApp=startApp; window.openNotifications=openNotifications;
     window.requestDelete=requestDelete; window.cancelDelete=cancelDelete; window.confirmDelete=confirmDelete;
     window.requestDeletePerson=requestDeletePerson; window.cancelDeletePerson=cancelDeletePerson; window.confirmDeletePerson=confirmDeletePerson;
     window.requestSettleDebt=requestSettleDebt; window.cancelSettleDebt=cancelSettleDebt; window.confirmSettleDebt=confirmSettleDebt;
-    window.updateSetting=updateSetting; window.setSmartTab=setSmartTab; window.openAddTransaction=openAddTransaction; window.openAddDebt=openAddDebt;
+    window.updateSetting=updateSetting; window.updateNotificationSetting=updateNotificationSetting; window.setSmartTab=setSmartTab; window.openAddTransaction=openAddTransaction; window.openAddDebt=openAddDebt;
     window.openAddPerson=openAddPerson; window.savePersonPage=savePersonPage; window.openAddDebtForPerson=openAddDebtForPerson; window.openPerson=openPerson;
-    window.setPersonDebtTab=setPersonDebtTab; window.startEdit=startEdit; window.startEditDebt=startEditDebt;
-    window.setSelectedDate=setSelectedDate; window.goCurrentWeek=goCurrentWeek; window.moveWeek=moveWeek; window.selectDebtSuggestion=selectDebtSuggestion;
-    window.requestNotificationPermission=requestNotificationPermission; window.historySearch=historySearch; window.debtSearch=debtSearch; window.debtKindFilter=debtKindFilter; window.setHistoryWeek=setHistoryWeek;
+    window.setPersonDebtTab=setPersonDebtTab; window.startEdit=startEdit; window.startEditDebt=startEditDebt; window.setHistoryWeek=setHistoryWeek;
+    window.setSelectedDate=setSelectedDate; window.goCurrentWeek=goCurrentWeek; window.moveWeek=moveWeek; window.selectDebtSuggestion=selectDebtSuggestion; window.selectHistorySuggestion=selectHistorySuggestion;
+    window.requestNotificationPermission=requestNotificationPermission; window.exportBackup=exportBackup; window.triggerImport=triggerImport;
+    window.liveFilterDebts=liveFilterDebts; window.liveFilterHistory=liveFilterHistory; window.toggleWeekMenu=toggleWeekMenu; window.closeWeekMenu=closeWeekMenu; window.goToToday=goToToday;
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
